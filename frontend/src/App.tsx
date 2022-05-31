@@ -9,7 +9,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <PrivateRoute path="/" element={<HomePage/>}/> 
+          <Route path="/home" element={<PrivateRoute outlet={<HomePage/>} isAuthenticated={true}/>}/>
           <Route element={<LoginPage />} path="/login" />
         </Routes>
       </BrowserRouter>

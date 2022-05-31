@@ -1,15 +1,20 @@
-import React, { ReactNode } from 'react';
-import {Route} from 'react-router-dom';
+import React from "react";
+import { Navigate } from "react-router-dom";
 
-interface IProps {
-    element: ReactNode;
-    path: string;
+interface IPrivateRouteProps {
+  isAuthenticated: boolean;
+  outlet: JSX.Element;
 }
-const PrivateRoute: React.FC<IProps> = ({path, element}) => {
-    console.log("super mordo");
-    return(
-        <Route path={path} element={element}/>
-    )
-}
+
+const PrivateRoute: React.FC<IPrivateRouteProps> = ({
+  isAuthenticated,
+  outlet,
+}) => {
+  if (isAuthenticated) {
+    return outlet;
+  } else {
+    return <Navigate to={{ pathname: "/login" }} />;
+  }
+};
 
 export default PrivateRoute;
