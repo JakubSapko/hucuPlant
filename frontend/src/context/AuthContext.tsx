@@ -65,6 +65,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
 //   13724
   useEffect(() => {
+    if (loading){
+      updateToken();
+    }
+
     const fourMinutes = 1000 * 60 * 4;
     let interval = setInterval(() => {
         if(authTokens){
@@ -124,6 +128,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }else{
         logOutUser();
     }
+
+    if (loading){
+      setLoading(false);
+    }
   };
 
   const contextValue: IAuthContext = {
@@ -134,6 +142,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{loading ? null : children}</AuthContext.Provider>
   );
 };
