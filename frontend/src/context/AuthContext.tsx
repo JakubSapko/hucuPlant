@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 interface IAuthContext {
   user: IUser | null;
   authTokens: IAuthTokens | null;
-  logInUser: () => void;
+  logInUser: (username: string, password: string) => void;
   logOutUser: () => void;
 }
 
@@ -87,13 +87,13 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     navigate("/login", { replace: true });
   };
 
-  const logInUser = async () => {
+  const logInUser = async (username: string, password: string) => {
     const response = await fetch("http://localhost:8000/api/token/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username: "admin", password: "admin" }),
+      body: JSON.stringify({ username: username, password: password }),
     });
 
     const data = await response.json();

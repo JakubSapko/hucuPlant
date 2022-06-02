@@ -10,14 +10,6 @@ const LoginPage: React.FC = () => {
     const [form] = Form.useForm();
 
     const {logInUser} = useAuthContext();
-    
-    const onFinish = () => {
-        console.log("Success");
-    }
-
-    const onFinishFailed = () => {
-        console.log("Failed");
-    }
 
     return(
         <div>
@@ -25,8 +17,6 @@ const LoginPage: React.FC = () => {
             <Form
                 name="loginForm"
                 initialValues={{remember: true}}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 form={form}
             >
@@ -45,7 +35,16 @@ const LoginPage: React.FC = () => {
                     <Input.Password/>
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" onClick={logInUser}>
+                    <Button type="primary" htmlType="submit" onClick={() => {
+                        form
+                            .validateFields()
+                            .then((values: {[key: string] : string}) => {
+                                logInUser(values.username, values.password);
+                            })
+                            .catch((info) => {
+                                console.log("Login failed", info);
+                            })
+                        }}>
                         Submit
                     </Button>
                 </Form.Item>
