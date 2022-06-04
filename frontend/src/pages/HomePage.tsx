@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import React, {useState, useEffect} from "react";
+import SideBar from "../components/SideBar";
 import { useAuthContext } from "../context/AuthContext";
 
 const HomePage = () => {
@@ -30,8 +31,9 @@ const HomePage = () => {
 
   console.log(plants);
   return (
-    <div>
-      {user && <Button onClick={logOutUser}>Log Out</Button>}
+    <div className="flex">
+      <SideBar/>
+      {/* {user && <Button onClick={logOutUser}>Log Out</Button>}
       {user && <p> Hello {user?.username}</p>}
       <p>You are logged to the home page</p>
 
@@ -39,7 +41,7 @@ const HomePage = () => {
         {plants.map(plant => (
           <li key={plant.id}>{plant.description}</li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };

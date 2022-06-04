@@ -12,7 +12,6 @@ const LoginPage: React.FC = () => {
 
     return(
         <div>
-            <h1>test 123</h1>
             <Link to={"/home"}>do home</Link>
             <Form
                 name="loginForm"
