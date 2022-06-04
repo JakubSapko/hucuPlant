@@ -2,7 +2,6 @@ import React from 'react';
 import {Button, Form, Input} from 'antd';
 import { useAuthContext } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
-import HomePage from './HomePage';
 
 
 const LoginPage: React.FC = () => {

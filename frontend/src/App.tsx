@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
-import { AuthContextProvider, useAuthContext } from "./context/AuthContext";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
 
