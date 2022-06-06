@@ -38,6 +38,8 @@ const MainPage = () => {
         return <DashboardSite/>;
       case 'Groups':
         return <GroupsSite/>;
+      default: 
+        return <PlantsSite/>;
     }
   }
 
