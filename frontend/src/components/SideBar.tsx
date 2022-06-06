@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { RiPlantFill } from "react-icons/ri";
 import { BsFillPieChartFill } from "react-icons/bs";
 import { MdGroups } from "react-icons/md";
@@ -8,8 +8,15 @@ import { useAuthContext } from "../context/AuthContext";
 interface IIcon {
   icon: JSX.Element;
   text: string;
+  name: string;
 }
-const SideBar: React.FC = () => {
+
+interface ISideBarProps {
+    setSite: Dispatch<SetStateAction<string>>;
+}
+
+
+const SideBar: React.FC<ISideBarProps> = ({setSite}) => {
   const { logOutUser } = useAuthContext();
 
   return (
@@ -17,9 +24,11 @@ const SideBar: React.FC = () => {
       <SideBarIcon
         icon={<RiPlantFill size="28" />}
         text="Check out your plants!"
+        setSite={setSite}
+        name="Plants"
       />
-      <SideBarIcon icon={<BsFillPieChartFill size="28" />} text="Statistics" />
-      <SideBarIcon icon={<MdGroups size="28" />} text="Groups" />
+      <SideBarIcon icon={<BsFillPieChartFill size="28" />} text="Statistics" setSite={setSite} name="Dashboard"/>
+      <SideBarIcon icon={<MdGroups size="28" />} text="Groups" setSite={setSite} name="Groups"/>
       <div className="pl-9 pt-10">
         <Button
           ghost
@@ -33,9 +42,9 @@ const SideBar: React.FC = () => {
   );
 };
 
-const SideBarIcon: React.FC<IIcon> = ({ icon, text }) => {
+const SideBarIcon: React.FC<IIcon & ISideBarProps> = ({ icon, text, name, setSite }) => {
   return (
-    <div className="sidebar-icon group">
+    <div className="sidebar-icon group" onClick={() => setSite(name)}>
       {icon}
       <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
     </div>

@@ -44,7 +44,7 @@ const MainPage = () => {
   console.log(plants);
   return (
     <div className="grid grid-cols-[8rem_1fr] grid-rows-1">
-      <SideBar/>
+      <SideBar setSite={setSite}/>
       {switchSite()}
       {/* {user && <Button onClick={logOutUser}>Log Out</Button>}
       {user && <p> Hello {user?.username}</p>}

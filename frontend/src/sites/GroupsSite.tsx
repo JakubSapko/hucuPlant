@@ -1,4 +1,4 @@
 
 export const GroupsSite: React.FC = () => {
-    return <p> groups </p>
+    return <div className="col-start-2 col-end-2 row-auto bg-olive min-h-screen"> groups </div>
 }
