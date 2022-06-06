@@ -2,6 +2,7 @@ import { Button } from "antd";
 import React, {useState, useEffect} from "react";
 import SideBar from "../components/SideBar";
 import { useAuthContext } from "../context/AuthContext";
+import TestPage from "./TestPage";
 
 const HomePage = () => {
   const {user, logOutUser, authTokens} = useAuthContext();
@@ -31,8 +32,9 @@ const HomePage = () => {
 
   console.log(plants);
   return (
-    <div className="flex">
+    <div className="grid grid-cols-[8rem_1fr] grid-rows-1">
       <SideBar/>
+      <TestPage/>
       {/* {user && <Button onClick={logOutUser}>Log Out</Button>}
       {user && <p> Hello {user?.username}</p>}
       <p>You are logged to the home page</p>
