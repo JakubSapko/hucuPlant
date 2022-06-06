@@ -17,7 +17,7 @@ function App() {
               element={
                 <PrivateRoute outlet={<HomePage />} />
               }
-            />
+              />
             <Route element={<LoginPage />} path="/login" />
           </Routes>
         </AuthContextProvider>
