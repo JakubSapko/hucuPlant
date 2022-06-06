@@ -1,12 +1,12 @@
-import { Button } from "antd";
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import SideBar from "../components/SideBar";
 import { useAuthContext } from "../context/AuthContext";
-import TestPage from "./TestPage";
+import { DashboardSite, GroupsSite, PlantsSite } from "../sites";
 
-const HomePage = () => {
-  const {user, logOutUser, authTokens} = useAuthContext();
+const MainPage = () => {
+  const {logOutUser, authTokens} = useAuthContext();
   const [plants, setPlants] = useState<any[]>([]);
+  const [site, setSite] = useState<string>("dupa");
 
   useEffect(()=> {
     getPlants();
@@ -30,11 +30,22 @@ const HomePage = () => {
     }
   }
 
+  const switchSite = () => {
+    switch(site){
+      case 'Plants':
+        return <PlantsSite/>;
+      case 'Dashboard':
+        return <DashboardSite/>;
+      case 'Groups':
+        return <GroupsSite/>;
+    }
+  }
+
   console.log(plants);
   return (
     <div className="grid grid-cols-[8rem_1fr] grid-rows-1">
       <SideBar/>
-      <TestPage/>
+      {switchSite()}
       {/* {user && <Button onClick={logOutUser}>Log Out</Button>}
       {user && <p> Hello {user?.username}</p>}
       <p>You are logged to the home page</p>
@@ -48,4 +59,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default MainPage;

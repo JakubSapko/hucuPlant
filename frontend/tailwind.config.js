@@ -8,7 +8,8 @@ module.exports = {
       secondary: '#679436', //light green
       contrast: '#ed7d3a', //mango orange
       content: '#f2e8cf', //egg white
-      darkish: '#000501' //dark
+      darkish: '#000501', //dark
+      olive: '#acc18a', //olive green for bg
     },
     extend: {
     },
