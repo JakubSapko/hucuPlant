@@ -20,7 +20,7 @@ const SideBar: React.FC<ISideBarProps> = ({setSite}) => {
   const { logOutUser } = useAuthContext();
 
   return (
-    <div className="fixed col-start1 col-end-1 top-0 left-0 h-screen w-32 m-0 flex flex-col bg-primary text-contrast shadow-lg">
+    <div className="fixed col-start1 col-end-1 top-0 left-0 h-screen w-32 m-0 flex flex-col bg-primary text-contrast shadow-lg z-10">
       <SideBarIcon
         icon={<RiPlantFill size="28" />}
         text="Check out your plants!"
