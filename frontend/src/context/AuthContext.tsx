@@ -63,7 +63,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }
   }, []);
 
-//   13724
   useEffect(() => {
     if (loading){
       updateToken();
