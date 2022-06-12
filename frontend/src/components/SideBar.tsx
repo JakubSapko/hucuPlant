@@ -4,6 +4,7 @@ import { BsFillPieChartFill } from "react-icons/bs";
 import { MdGroups } from "react-icons/md";
 import { Button } from "antd";
 import { useAuthContext } from "../context/AuthContext";
+import styled from "styled-components";
 
 interface IIcon {
   icon: JSX.Element;
@@ -15,12 +16,21 @@ interface ISideBarProps {
     setSite: Dispatch<SetStateAction<string>>;
 }
 
+const StyledButton = styled(Button)`
+  border: none;
+  color: #f2e8cf !important;
+  &:hover{
+    color: #ed7d3a !important;
+  }
+  padding-left: 4.5rem;
+  margin-top: 1.5rem;
+`;
 
 const SideBar: React.FC<ISideBarProps> = ({setSite}) => {
   const { logOutUser } = useAuthContext();
 
   return (
-    <div className="fixed col-start1 col-end-1 top-0 left-0 h-screen w-32 m-0 flex flex-col bg-primary text-contrast shadow-lg z-10">
+    <div>
       <SideBarIcon
         icon={<RiPlantFill size="28" />}
         text="Check out your plants!"
@@ -29,15 +39,12 @@ const SideBar: React.FC<ISideBarProps> = ({setSite}) => {
       />
       <SideBarIcon icon={<BsFillPieChartFill size="28" />} text="Statistics" setSite={setSite} name="Dashboard"/>
       <SideBarIcon icon={<MdGroups size="28" />} text="Groups" setSite={setSite} name="Groups"/>
-      <div className="pl-9 pt-10">
-        <Button
+        <StyledButton
           ghost
-          className="text-content hover:text-contrast"
           onClick={logOutUser}
         >
           Log Out
-        </Button>
-      </div>
+        </StyledButton>
     </div>
   );
 };
