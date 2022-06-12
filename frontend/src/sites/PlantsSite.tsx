@@ -14,8 +14,6 @@ const StyledCard = styled(Card)`
   overflow: hidden;
   z-index: 0;
   max-width: 300px;
-  /* position: absolute; */
-  /* max-height: 600px; */
 `;
 
 const Wrapper = styled.div`
@@ -29,8 +27,6 @@ const Wrapper = styled.div`
 export const PlantsSite: React.FC = () => {
   return (
     <Wrapper>
-      
-     {/* <div className="col-start-2 col-end-2 row-auto bg-olive min-h-screen z-0 h-full max-w-screen flex flex-row justify-around flex-wrap"> */}
         {mockData.map((plant) => {
           return (
             <div className="">
@@ -47,7 +43,6 @@ export const PlantsSite: React.FC = () => {
             </div>
           );
         })}
-      {/* </div> */}
     </Wrapper>
 
   );
