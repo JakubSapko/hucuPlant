@@ -56,7 +56,6 @@ const MainPage = () => {
     }
   };
 
-  console.log(plants);
   return (
     <Layout>
       <StyledSider>
