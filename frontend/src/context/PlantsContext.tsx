@@ -5,19 +5,9 @@ import {
   createContext,
   ReactNode,
 } from "react";
+import { IPlant } from "../types/plant";
 import { useAuthContext } from "./AuthContext";
 
-interface IPlant {
-  user: number;
-  id: number;
-  name: string;
-  plant_species: string;
-  description: string;
-  date_added: string;
-  how_often: number;
-  last_watered: number;
-  img: string;
-}
 
 interface IPlantsContext {
   plants: IPlant[] | null;
