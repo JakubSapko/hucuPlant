@@ -13,6 +13,7 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
   {
     user: 1,
@@ -25,6 +26,7 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
   {
     user: 1,
@@ -37,6 +39,7 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
   {
     user: 1,
@@ -49,6 +52,7 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
   {
     user: 1,
@@ -61,6 +65,7 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
   {
     user: 1,
@@ -73,6 +78,7 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
   {
     user: 1,
@@ -85,6 +91,7 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
   {
     user: 1,
@@ -97,6 +104,7 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
   {
     user: 1,
@@ -109,5 +117,6 @@ export const mockData = [
     how_often: 3,
     last_watered: 1,
     img: example,
+    tracked: true,
   },
 ];

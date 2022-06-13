@@ -8,6 +8,7 @@ export interface IPlant {
     how_often: number;
     last_watered: number;
     img: string;
+    tracked: boolean;
 }
 
 export interface ICardProps{

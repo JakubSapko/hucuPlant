@@ -60,7 +60,6 @@ export const PlantsContextProvider = ({
     plants: plants,
   };
 
-  console.log(plants);
   return (
     <PlantsContext.Provider value={plantsContextValue}>
       {children}

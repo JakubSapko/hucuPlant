@@ -4,9 +4,10 @@ import {
     SettingOutlined,
   } from "@ant-design/icons";
 import { Card } from "antd";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import styled from "styled-components";
 import { ICardProps } from "../types/plant";
+import { EditPanel } from "./PlantCardPanels/EditPanel";
 
 const {Meta} = Card;
 
@@ -39,7 +40,7 @@ const PlantCard: React.FC<ICardProps> = ({plant}) => {
     const switchToEdit = () => {
         const edit = {
             cover: null,
-            content: "Tu jest edit",
+            content: <EditPanel plant={plant}/>,
         }
         setTab(edit);
     }
