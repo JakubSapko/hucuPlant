@@ -11,3 +11,4 @@ class Plant(models.Model):
     plant_species = models.CharField(max_length=150)
     last_watered = models.IntegerField(default=0)
     how_often = models.IntegerField(default=0)
+    tracked=models.BooleanField(default=True)

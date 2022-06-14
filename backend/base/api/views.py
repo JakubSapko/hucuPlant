@@ -38,3 +38,12 @@ def getPlants(request):
     plants = user.plant_set.all()
     serializer = PlantSerializer(plants, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def updatePlantTracking(request, pk):
+    plant = Plant.objects.get(id=pk)
+    serializer = PlantSerializer(instance=plant, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
