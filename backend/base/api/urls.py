@@ -10,4 +10,5 @@ urlpatterns = [
     path('token/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('plants_data/', views.getPlants),
+    path('update-plant/<str:pk>/', views.updatePlantTracking)
 ]
