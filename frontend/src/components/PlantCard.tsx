@@ -7,7 +7,7 @@ import { Card } from "antd";
 import { ReactNode, useState } from "react";
 import styled from "styled-components";
 import { ICardProps } from "../types/plant";
-import { EditPanel } from "./PlantCardPanels/EditPanel";
+import { SettingsPanel } from "./PlantCardPanels/EditPanel";
 
 const {Meta} = Card;
 
@@ -32,7 +32,7 @@ const PlantCard: React.FC<ICardProps> = ({plant}) => {
     const switchToSettings = () => {
         const settings = {
             cover: null,
-            content: "Tu sa settings",
+            content: <SettingsPanel plant={plant}/>,
         }
         setTab(settings);
     }
@@ -40,7 +40,7 @@ const PlantCard: React.FC<ICardProps> = ({plant}) => {
     const switchToEdit = () => {
         const edit = {
             cover: null,
-            content: <EditPanel plant={plant}/>,
+            content: "Tu jest edit",
         }
         setTab(edit);
     }

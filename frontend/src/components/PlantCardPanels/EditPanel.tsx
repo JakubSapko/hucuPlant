@@ -3,12 +3,11 @@ import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { usePlantsContext } from '../../context/PlantsContext';
 import { ICardProps } from '../../types/plant';
 
-export const EditPanel: React.FC<ICardProps> = ({plant}) => {
+export const SettingsPanel: React.FC<ICardProps> = ({plant}) => {
 
     const {updateTracking} = usePlantsContext();
 
     const onChange = (e: CheckboxChangeEvent) => {
-        plant.tracked = !plant.tracked;
         updateTracking(plant);
     }
 

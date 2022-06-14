@@ -29,7 +29,7 @@ def getRoutes(request):
         '/api/token',
         '/api/token/refresh',
         '/api/plants_data',
-        '/api/update-plant/<str:pk>'
+        '/api/update_plant/<str:pk>'
     ]
     return Response(routes)
 
@@ -45,7 +45,8 @@ def getPlants(request):
 @permission_classes([IsAuthenticated])
 def updatePlantTracking(request, pk):
     plant = Plant.objects.get(id=pk)
-    serializer = PlantSerializer(instance=plant, data=request.data)
+    serializer = PlantSerializer(instance=plant, data=request.data, partial=True)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data)
+    return Response(serializer.errors, status=400)

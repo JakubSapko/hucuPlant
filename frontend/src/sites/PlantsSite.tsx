@@ -1,8 +1,6 @@
-import { Card } from "antd";
 import styled from "styled-components";
 import PlantCard from "../components/PlantCard";
-import { mockData } from "./plantsMockData";
-const { Meta } = Card;
+import { usePlantsContext } from "../context/PlantsContext";
 
 
 const Wrapper = styled.div`
@@ -14,9 +12,10 @@ const Wrapper = styled.div`
 `;
 
 export const PlantsSite: React.FC = () => {
+  const {plants} = usePlantsContext();
   return (
     <Wrapper>
-      {mockData.map((plant) => {
+      {plants?.map((plant) => {
         return (
             <PlantCard plant={plant}/>
         );
