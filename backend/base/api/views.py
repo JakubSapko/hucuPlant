@@ -28,6 +28,8 @@ def getRoutes(request):
     routes = [
         '/api/token',
         '/api/token/refresh',
+        '/api/plants_data',
+        '/api/update-plant/<str:pk>'
     ]
     return Response(routes)
 
