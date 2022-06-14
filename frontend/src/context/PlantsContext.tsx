@@ -11,10 +11,12 @@ import { useAuthContext } from "./AuthContext";
 
 interface IPlantsContext {
   plants: IPlant[] | null;
+  updateTracking: (plant: IPlant) => void;
 }
 
 const PlantsContext = createContext<IPlantsContext>({
   plants: null,
+  updateTracking: (plant: IPlant) => {},
 });
 
 export const usePlantsContext = () => {
@@ -56,8 +58,26 @@ export const PlantsContextProvider = ({
     }
   };
 
+  const updateTracking = async (plant: IPlant) => {
+    let accessToken = authTokens?.access;
+    const response = await fetch(`http://localhost:8000/api/plant-update/${plant.id}/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + String(accessToken),
+      },
+      body: JSON.stringify({'tracked': plant.tracked, 'id': plant.id})
+    });
+
+    if (response.status === 200){
+      getPlants();
+    }
+
+  }
+
   const plantsContextValue: IPlantsContext = {
     plants: plants,
+    updateTracking: updateTracking
   };
 
   return (
