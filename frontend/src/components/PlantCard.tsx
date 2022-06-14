@@ -7,7 +7,7 @@ import { Card } from "antd";
 import { ReactNode, useState } from "react";
 import styled from "styled-components";
 import { ICardProps } from "../types/plant";
-import { SettingsPanel } from "./PlantCardPanels/EditPanel";
+import { SettingsPanel } from "./PlantCardPanels/SettingsPanel";
 
 const {Meta} = Card;
 
