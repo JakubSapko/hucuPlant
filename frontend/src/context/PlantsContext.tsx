@@ -69,8 +69,6 @@ export const PlantsContextProvider = ({
       },
       body: JSON.stringify({'id': plant.id, 'tracked': plant.tracked,})
     });
-    let data = await response.json();
-    console.log(data)
   }
 
   const plantsContextValue: IPlantsContext = {

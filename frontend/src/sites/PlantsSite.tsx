@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import { NoDataPlaceholder } from "../components/NoDataPlaceholder";
 import PlantCard from "../components/PlantCard";
 import { usePlantsContext } from "../context/PlantsContext";
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,15 +11,42 @@ const Wrapper = styled.div`
   padding: 2rem;
 `;
 
+const NoDataWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16rem;
+  padding: 2rem;
+  
+`;
+
 export const PlantsSite: React.FC = () => {
-  const {plants} = usePlantsContext();
+  const { plants } = usePlantsContext();
   return (
-    <Wrapper>
-      {plants?.map((plant) => {
-        return (
-            <PlantCard plant={plant}/>
-        );
-      })}
-    </Wrapper>
+    <>
+      {plants?.length ? (
+        <Wrapper>
+          {plants.map((plant) => {
+            return <PlantCard plant={plant} />;
+          })}
+        </Wrapper>
+      ) : (
+        <NoDataWrapper>
+          <NoDataPlaceholder />
+        </NoDataWrapper>
+      )}
+    </>
   );
 };
+
+// <>
+//     { plants?.length ? {<Wrapper>  plants.map((plant) => {
+//         return (
+//             <PlantCard plant={plant}/>
+//         );
+//       })    </Wrapper> : <NoDataWrapper>
+
+//         <NoDataPlaceholder/>
+//         </NoDataWrapper>}
+//   );
+//   </>
