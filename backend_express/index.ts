@@ -5,7 +5,7 @@ import cookieSession from 'cookie-session';
 
 dotenv.config();
 
-const PORT: string | number = process.env.PORT || 8000;
+const PORT: string | number = process.env.PORT || 8080;
 const app: Express = express();
 
 app.use(cors());

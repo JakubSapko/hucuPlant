@@ -1,7 +1,8 @@
 import {Sequelize} from 'sequelize/types';
 import {DataTypes} from 'sequelize';
 
-module.exports = (sequelize: Sequelize) => {
+
+const User = (sequelize: Sequelize) => {
     const User = sequelize.define("users", {
         username: {
             type: DataTypes.STRING
@@ -15,3 +16,5 @@ module.exports = (sequelize: Sequelize) => {
     });
     return User;
 }
+
+export default User;

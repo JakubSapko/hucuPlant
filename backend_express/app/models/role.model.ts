@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize/types";
 import { DataTypes } from 'sequelize';
 
-module.exports = (sequelize: Sequelize) => {
+const Role = (sequelize: Sequelize) => {
     const Role = sequelize.define("roles", {
         id: {
             type: DataTypes.INTEGER,
@@ -13,3 +13,5 @@ module.exports = (sequelize: Sequelize) => {
     });
     return Role;
 }
+
+export default Role;
