@@ -1,20 +1,7 @@
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import { Card } from "antd";
 import styled from "styled-components";
-import { mockData } from "./plantsMockData";
-const { Meta } = Card;
-
-
-const StyledCard = styled(Card)`
-  border-radius: 13%;
-  overflow: hidden;
-  z-index: 0;
-  max-width: 300px;
-`;
+import { NoDataPlaceholder } from "../components/NoDataPlaceholder";
+import PlantCard from "../components/PlantCard";
+import { usePlantsContext } from "../context/PlantsContext";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,26 +11,42 @@ const Wrapper = styled.div`
   padding: 2rem;
 `;
 
-export const PlantsSite: React.FC = () => {
-  return (
-    <Wrapper>
-        {mockData.map((plant) => {
-          return (
-            <div className="">
-                <StyledCard
-                cover={<img alt={plant.name} src={plant.img} />}
-                actions={[
-                    <SettingOutlined key="setting" />,
-                    <EditOutlined key="edit" />,
-                    <EllipsisOutlined key="ellipsis" />,
-                ]}
-                >
-                <Meta title={plant.name} description={plant.description} />
-                </StyledCard>
-            </div>
-          );
-        })}
-    </Wrapper>
+const NoDataWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16rem;
+  padding: 2rem;
+  
+`;
 
+export const PlantsSite: React.FC = () => {
+  const { plants } = usePlantsContext();
+  return (
+    <>
+      {plants?.length ? (
+        <Wrapper>
+          {plants.map((plant) => {
+            return <PlantCard plant={plant} />;
+          })}
+        </Wrapper>
+      ) : (
+        <NoDataWrapper>
+          <NoDataPlaceholder />
+        </NoDataWrapper>
+      )}
+    </>
   );
 };
+
+// <>
+//     { plants?.length ? {<Wrapper>  plants.map((plant) => {
+//         return (
+//             <PlantCard plant={plant}/>
+//         );
+//       })    </Wrapper> : <NoDataWrapper>
+
+//         <NoDataPlaceholder/>
+//         </NoDataWrapper>}
+//   );
+//   </>
