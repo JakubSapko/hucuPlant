@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 import jwt from "jsonwebtoken";
+import argon2 from 'argon2';
 
 export const auth = Router();
 const prisma = new PrismaClient();
@@ -8,7 +9,7 @@ const prisma = new PrismaClient();
 auth.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  const user = await prisma.user.findUnique({
+  const user: User | null = await prisma.user.findUnique({
     where: {
       username: username,
     },
@@ -21,8 +22,8 @@ auth.post("/login", async (req, res) => {
   }
 
   try {
-    if (password === user.password) {
-      const accessToken = jwt.sign({ userId: user.id }, "secret");
+    if (await argon2.verify(user.password, password)) {
+      const accessToken: string = jwt.sign({ userId: user.id }, "secret");
       return res.status(200).json({ success: true, accessToken: accessToken });
     } else {
       return res
@@ -39,7 +40,7 @@ auth.post("/login", async (req, res) => {
 auth.post("/register", async (req, res) => {
   const { email, username, password } = req.body;
 
-  const usernameResult = await prisma.user.findUnique({
+  const usernameResult: User | null = await prisma.user.findUnique({
     where: {
       username: username,
     },
@@ -51,7 +52,7 @@ auth.post("/register", async (req, res) => {
       .json({ success: false, error: "User of that name already exists" });
   }
 
-  const emailResult = await prisma.user.findUnique({
+  const emailResult: User | null = await prisma.user.findUnique({
     where: {
       email: email,
     },
@@ -63,7 +64,8 @@ auth.post("/register", async (req, res) => {
       .json({ success: false, error: "User with that email already exists" });
   }
 
-  const user = await prisma.user.create({
+  const hashedPassword: string = await argon2.hash(password);
+  const user: User = await prisma.user.create({
     data: {
       email: email,
       username: username,
@@ -71,7 +73,7 @@ auth.post("/register", async (req, res) => {
     },
   });
 
-  const accessToken = jwt.sign({ userId: user.id }, "secret");
+  const accessToken: string = jwt.sign({ userId: user.id }, "secret");
 
   return res.status(200).json({ success: true, accessToken: accessToken });
 });
