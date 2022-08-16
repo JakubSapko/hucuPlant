@@ -33,6 +33,7 @@
   "devDependencies": {
     "@types/cookie-session": "^2.0.44",
     "@types/cors": "^2.8.12",
+    "@types/jsonwebtoken": "^8.5.8",
     "concurrently": "^7.3.0",
     "nodemon": "^2.0.19",
     "prisma": "^4.2.1"
