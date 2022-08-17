@@ -21,8 +21,8 @@ model Plant {
   species String
   description String?
   createdAt DateTime
-  owner User @relation(fields: [authorID], references: [id])
-  authorID Int
+  owner User @relation(fields: [ownerName], references: [username])
+  ownerName String
   tracked Boolean
   last_watered Int?
   how_often Int?

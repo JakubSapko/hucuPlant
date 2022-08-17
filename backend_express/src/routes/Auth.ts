@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { PrismaClient, User } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import argon2 from 'argon2';
@@ -6,7 +6,7 @@ import argon2 from 'argon2';
 export const auth = Router();
 const prisma = new PrismaClient();
 
-auth.post("/login", async (req, res) => {
+auth.post("/login", async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   const user: User | null = await prisma.user.findUnique({
@@ -37,7 +37,7 @@ auth.post("/login", async (req, res) => {
   }
 });
 
-auth.post("/register", async (req, res) => {
+auth.post("/register", async (req: Request, res: Response) => {
   const { email, username, password } = req.body;
 
   const usernameResult: User | null = await prisma.user.findUnique({
@@ -69,7 +69,7 @@ auth.post("/register", async (req, res) => {
     data: {
       email: email,
       username: username,
-      password: password,
+      password: hashedPassword,
     },
   });
 
