@@ -6,7 +6,7 @@ import * as bodyParser from "body-parser";
 import * as dotenv from "dotenv";
 
 import { auth as AuthRoute } from "./routes/Auth";
-import { plant as PlantsRoute } from "./routes/PlantAPI/getPlants";
+import { plant as PlantsRoute } from "./routes/PlantAPI/Plants";
 
 export class Server {
   public app: express.Application;
