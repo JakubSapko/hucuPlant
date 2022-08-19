@@ -21,7 +21,7 @@ model Plant {
   species String?
   description String?
   createdAt DateTime
-  owner User @relation(fields: [ownerName], references: [username])
+  owner User @relation(fields: [ownerName], references: [username], onDelete: Cascade)
   ownerName String
   tracked Boolean @default(false)
   last_watered Int?
