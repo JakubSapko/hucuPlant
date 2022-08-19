@@ -23,7 +23,7 @@ plant.get("/", isAuthenticated, async (req: Request, res: Response) => {
 })
 
 plant.put("/:plantID(\d+)", isAuthenticated, async (req: Request, res: Response) => {
-    const plantID: number = parseInt(req.params.userID);
+    const plantID: number = parseInt(req.params.plantID);
     const requestedChange: Partial<Plant> =  req.body;
     
     if(!requestedChange){
@@ -60,4 +60,24 @@ plant.post("/add", isAuthenticated, async (req: Request, res: Response) => {
     }
 
     return res.status(200).json({success: true, message: "Plant successfully added"})
+})
+
+plant.post("/delete/:plantID9\d+)", isAuthenticated, async (req: Request, res: Response) => {
+    const plantID: number = parseInt(req.params.plantID);
+
+    if (!plantID){
+        return res.status(400).json({success: false, message: "Invalid ID provided"});
+    }
+
+    const deletedPlant = await prisma.plant.delete({
+        where: {
+            id: plantID
+        }
+    });
+
+    if (!deletedPlant){
+        return res.status(400).json({success: false, message: "Plant could not be found"});
+    }
+
+    return res.status(200).json({success: true, message: "Plant deleted successfully"});
 })
