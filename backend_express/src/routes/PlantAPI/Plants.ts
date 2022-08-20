@@ -62,7 +62,7 @@ plant.post("/add", isAuthenticated, async (req: Request, res: Response) => {
     return res.status(200).json({success: true, message: "Plant successfully added"})
 })
 
-plant.post("/delete/:plantID9\d+)", isAuthenticated, async (req: Request, res: Response) => {
+plant.post("/delete/:plantID(\d+)", isAuthenticated, async (req: Request, res: Response) => {
     const plantID: number = parseInt(req.params.plantID);
 
     if (!plantID){

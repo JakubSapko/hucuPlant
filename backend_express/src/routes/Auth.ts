@@ -21,10 +21,11 @@ auth.post("/login", async (req: Request, res: Response) => {
       .json({ success: false, error: "User of that name was not found" });
   }
 
+
   try {
     if (await argon2.verify(user.password, password)) {
-      const accessToken: string = jwt.sign({ userId: user.id }, "secret");
-      return res.status(200).json({ success: true, accessToken: accessToken });
+      const accessToken: string = jwt.sign({ userId: user.id }, "secret", {expiresIn: 60*60});
+      return res.status(200).json({ success: true, accessToken: accessToken});
     } else {
       return res
         .status(400)
@@ -65,6 +66,7 @@ auth.post("/register", async (req: Request, res: Response) => {
   }
 
   const hashedPassword: string = await argon2.hash(password);
+
   const user: User = await prisma.user.create({
     data: {
       email: email,

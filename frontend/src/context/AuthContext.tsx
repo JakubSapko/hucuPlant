@@ -49,7 +49,6 @@ interface IAuthTokens {
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [authTokens, setAuthTokens] = useState<IAuthTokens | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedTokens = localStorage.getItem("authTokens");
@@ -63,19 +62,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (loading){
-      updateToken();
-    }
-
-    const fourMinutes = 1000 * 60 * 4;
-    let interval = setInterval(() => {
-        if(authTokens){
-            updateToken();
-        }
-    }, fourMinutes);
-    return () => clearInterval(interval);
-  }, [authTokens, loading]);
 
   let navigate = useNavigate();
 
@@ -87,7 +73,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   const logInUser = async (username: string, password: string) => {
-    const response = await fetch("http://localhost:8000/api/token/", {
+
+    const response = await fetch("http://localhost:8000/api/auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -97,41 +84,18 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
     const data = await response.json();
 
+
     if (response.status === 200) {
       setAuthTokens(data);
-      const decodedUser: IUser = jwt_decode(data.access);
+      const decodedUser: IUser = jwt_decode(data.accessToken);
       setUser(decodedUser);
       localStorage.setItem("authTokens", JSON.stringify(data));
       navigate("/home", { replace: true });
     } else {
-      console.log("something went wrong");
+      console.log(`[${data.success}]: ${data.error}`);
     }
   };
 
-  const updateToken = async () => {
-
-    const refreshToken = authTokens?.refresh;
-    const response = await fetch("http://localhost:8000/api/token/refresh/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({refresh: refreshToken}),
-    });
-    const data = await response.json();
-    if (response.status === 200){
-        setAuthTokens(data);
-        const decodedUser: IUser = jwt_decode(data.access);
-        setUser(decodedUser);
-        localStorage.setItem("authTokens", JSON.stringify(data));
-    }else{
-        logOutUser();
-    }
-
-    if (loading){
-      setLoading(false);
-    }
-  };
 
   const contextValue: IAuthContext = {
     user: user,
@@ -141,6 +105,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>{loading ? null : children}</AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
