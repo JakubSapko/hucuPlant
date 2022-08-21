@@ -4,7 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthContextProvider } from "./context/AuthContext";
-import { LandingPage } from "./pages/LandingPage";
+import { LandingPageHome } from "./pages/LandingPageHome";
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
               }
               />
             <Route element={<LoginPage />} path="/login" />
-            <Route element={<LandingPage/>} path="/"/>
+            <Route element={<LandingPageHome/>} path="/"/>
           </Routes>
         </AuthContextProvider>
       </BrowserRouter>
