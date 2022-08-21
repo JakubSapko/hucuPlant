@@ -14,7 +14,7 @@ const PrivateRoute: React.FC<IPrivateRouteProps> = ({ outlet }) => {
   if (isAuthenticated) {
     return <PlantsContextProvider>{outlet}</PlantsContextProvider>;
   } else {
-    return <Navigate to={{ pathname: "/login" }} />;
+    return <Navigate to={{ pathname: "/" }} />;
   }
 };
 
