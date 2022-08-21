@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import SideBar from "../components/SideBar";
 import { useAuthContext } from "../context/AuthContext";
-import { DashboardSite, GroupsSite, PlantsSite } from "../sites";
+import { DashboardSite, GroupsSite, PlantsSite, NewPlantSite } from "../sites";
 
 const StyledContent = styled(Layout.Content)`
   height: 100vh;
@@ -51,6 +51,8 @@ const MainPage = () => {
         return <DashboardSite />;
       case "Groups":
         return <GroupsSite />;
+      case "NewPlant":
+        return <NewPlantSite/>;
       default:
         return <PlantsSite />;
     }
