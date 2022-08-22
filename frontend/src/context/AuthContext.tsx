@@ -55,7 +55,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     if (storedTokens) {
       if (storedTokens !== null) {
         const localStorageData = JSON.parse(storedTokens);
-        setUser(jwt_decode(localStorageData.access));
+        setUser(jwt_decode(localStorageData.accessToken));
       }
     } else {
       setUser(null);
@@ -69,7 +69,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem("authTokens");
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
   };
 
   const logInUser = async (username: string, password: string) => {

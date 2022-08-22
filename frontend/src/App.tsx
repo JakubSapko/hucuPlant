@@ -1,10 +1,9 @@
-import React from "react";
 import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthContextProvider } from "./context/AuthContext";
-import { LandingPageHome } from "./pages/LandingPageHome";
+import { LandingPage } from "./pages/Landing/LandingPage";
+import LandingPageLogIn from "./pages/Landing/LandingPageLogin";
 
 function App() {
 
@@ -18,8 +17,8 @@ function App() {
                 <PrivateRoute outlet={<HomePage />} />
               }
               />
-            <Route element={<LoginPage />} path="/login" />
-            <Route element={<LandingPageHome/>} path="/"/>
+            <Route element={<LandingPageLogIn />} path="/login" />
+            <Route element={<LandingPage/>} path="/"/>
           </Routes>
         </AuthContextProvider>
       </BrowserRouter>

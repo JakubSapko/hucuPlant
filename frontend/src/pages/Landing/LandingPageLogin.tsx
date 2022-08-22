@@ -1,10 +1,9 @@
 import React from 'react';
 import {Button, Form, Input} from 'antd';
-import { useAuthContext } from '../context/AuthContext';
-import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContext';
 
 
-const LoginPage: React.FC = () => {
+const LandingPageLogIn: React.FC = () => {
     
     const [form] = Form.useForm();
 
@@ -12,7 +11,6 @@ const LoginPage: React.FC = () => {
 
     return(
         <div>
-            <Link to={"/home"}>do home</Link>
             <Form
                 name="loginForm"
                 initialValues={{remember: true}}
@@ -52,4 +50,4 @@ const LoginPage: React.FC = () => {
     )
 }
 
-export default LoginPage;
+export default LandingPageLogIn;
