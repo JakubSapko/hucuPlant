@@ -11,7 +11,7 @@ const StyledContent = styled(Layout.Content)`
 `;
 
 const StyledSider = styled(Layout.Sider)`
-  background-color: #1b6000;
+  background-color: #52822e;
   color: #ed7d3a;
 `;
 

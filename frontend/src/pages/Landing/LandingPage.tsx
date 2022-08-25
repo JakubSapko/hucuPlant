@@ -28,6 +28,10 @@ const StyledMenu = styled(Menu)`
   && .ant-menu-item-selected::after {
     border-bottom: 2px solid #659e38 !important;
   }
+  
+  && .ant-menu-item:hover::after{
+    border-bottom: 2px solid #659e38 !important;
+  }
 `;
 
 
