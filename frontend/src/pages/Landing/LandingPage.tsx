@@ -25,6 +25,9 @@ const StyledTitle = styled.div`
 const StyledMenu = styled(Menu)`
   margin-top: 0.5rem;
   border-bottom-style: none;
+  && .ant-menu-item-selected::after {
+    border-bottom: 2px solid #659e38 !important;
+  }
 `;
 
 
@@ -97,7 +100,7 @@ export const LandingPage = () => {
           <StyledTitle>hucuPlant</StyledTitle>
           <StyledMenu mode="horizontal" items={links} style={{float: 'right'}} />
         </StyledHeader>
-        <Content style={{backgroundColor: "white",  minHeight: '100%', display: "flex"}}>
+        <Content style={{backgroundColor: "white",  minHeight: '100%', display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
             {switchSubpage()}
         </Content>
 
