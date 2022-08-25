@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { LandingPageHome } from "./LandingPageHome";
 import LandingPageLogIn from "./LandingPageLogin";
+import { LandingPageOverview } from "./LandingPageOverview";
+import { LandingPageSignUp } from "./LandingPageSignUp";
 
-const { Header, Content } = Layout;
+const { Header, Content} = Layout;
 
 const StyledHeader = styled(Header)`
   background-color: white;
@@ -24,7 +26,6 @@ const StyledMenu = styled(Menu)`
   margin-top: 0.5rem;
   border-bottom-style: none;
 `;
-
 
 
 
@@ -79,10 +80,10 @@ export const LandingPage = () => {
     switch (landingPageSubpage){
       case "home":
         return <LandingPageHome/>;
-      // case "overview":
-      //   return <LandingPageOverview/>;
-      // case "signup":
-      //   return <LandingPageSignUp/>;
+      case "overview":
+        return <LandingPageOverview/>;
+      case "signup":
+        return <LandingPageSignUp/>;
       case "login":
         return <LandingPageLogIn/>;
       default:
@@ -91,16 +92,15 @@ export const LandingPage = () => {
   }
 
   return (
-    <>
-      <Layout>
+      <Layout style={{minHeight: '100%'}}>
         <StyledHeader>
           <StyledTitle>hucuPlant</StyledTitle>
           <StyledMenu mode="horizontal" items={links} style={{float: 'right'}} />
         </StyledHeader>
-        <Content style={{backgroundColor: "white"}}>
+        <Content style={{backgroundColor: "white",  minHeight: '100%', display: "flex"}}>
             {switchSubpage()}
         </Content>
+
       </Layout>
-    </>
   );
 };
