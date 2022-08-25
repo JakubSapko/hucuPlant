@@ -21,6 +21,18 @@ const RightSideText = styled.div`
   font-size: 2rem;
   padding: 0.5rem;
   margin-top: 0.5rem;
+  animation-name: slideinRight;
+  animation-duration: 2.5s;
+
+  @keyframes slideinRight {
+    from {
+      margin-left: 100%;
+    }
+
+    to {
+        margin-left: 0%;
+    }
+  }
 `
 
 const LeftSideText = styled.div`
@@ -29,6 +41,18 @@ const LeftSideText = styled.div`
   font-size: 2rem;
   padding: 1rem;
   height: min-content;
+  animation-name: slideinLeft;
+  animation-duration: 2.5s;
+
+  @keyframes slideinLeft {
+    from {
+      margin-left: -100%;
+    }
+
+    to {
+        margin-left: 0%;
+    }
+  }
 `;
 
 const EmphasisedText = styled.p`
