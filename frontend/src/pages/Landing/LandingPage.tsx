@@ -63,7 +63,7 @@ export const LandingPage = () => {
     },
     {
       key: 3,
-      label: "Signup",
+      label: "Sign Up",
       style: {
         color: "black",
         transition: "none",

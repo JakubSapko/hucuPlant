@@ -1,6 +1,7 @@
 import { StyledTitle } from "./LandingPageOverview";
 import { EmphasisedText } from "./LandingPageHome";
 import { Button, Form, Input } from "antd";
+import { ICredentials, useAuthContext } from "../../context/AuthContext";
 
 
 const layout = {
@@ -8,12 +9,16 @@ const layout = {
   wrapperCol: {span: 8}
 }
 
+
+
 export const LandingPageSignUp: React.FC = () => {
 
   const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
-    console.log(values);
+  const {fetching, registerUser} = useAuthContext();
+
+  const onFinish = (values: ICredentials) => {
+    registerUser(values);
   }
 
   return (
@@ -32,7 +37,7 @@ export const LandingPageSignUp: React.FC = () => {
         <Form.Item name="password" label="Password" rules={[{required: true}]}>
           <Input type={"password"}/>
         </Form.Item>
-        <Button htmlType="submit" type="primary">
+        <Button htmlType="submit" type="primary" loading={fetching}>
           Submit
         </Button>
       </Form>
