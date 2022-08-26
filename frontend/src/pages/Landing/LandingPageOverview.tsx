@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { EmphasisedText } from "./LandingPageHome";
-import { AiFillGithub } from "react-icons/ai";
 
-const StyledTitle = styled.div`
+export const StyledTitle = styled.div`
   font-family: "Poppins", sans-serif;
   font-size: 2rem;
   margin-bottom: 0.5rem;
