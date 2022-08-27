@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { NoDataPlaceholder } from "../components/NoDataPlaceholder";
-import PlantCard from "../components/PlantCard";
-import { usePlantsContext } from "../context/PlantsContext";
+import { NoDataPlaceholder } from "../../components/NoDataPlaceholder";
+import PlantCard from "../../components/PlantCard";
+import { usePlantsContext } from "../../context/PlantsContext";
 
 const Wrapper = styled.div`
   display: flex;

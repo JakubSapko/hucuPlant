@@ -1,4 +1,4 @@
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/App/HomePage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthContextProvider } from "./context/AuthContext";

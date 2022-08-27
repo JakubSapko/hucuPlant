@@ -37,7 +37,7 @@ export const LandingPageSignUp: React.FC = () => {
         <Form.Item name="password" label="Password" rules={[{required: true}]}>
           <Input type={"password"}/>
         </Form.Item>
-        <Button htmlType="submit" type="primary" loading={fetching}>
+        <Button htmlType="submit" type="primary" style={{backgroundColor: "#659e38", border: "none"}}loading={fetching}>
           Submit
         </Button>
       </Form>

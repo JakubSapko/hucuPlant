@@ -36,25 +36,25 @@ const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
         icon={<RiPlantFill size="28" />}
         text="Check out your plants!"
         setSite={setSite}
-        name="Plants"
+        name="plants"
       />
       <SideBarIcon
         icon={<GiPlantRoots size="28" />}
         text="Add a new plant"
         setSite={setSite}
-        name="NewPlant"
+        name="addplant"
       />
       <SideBarIcon
         icon={<BsFillPieChartFill size="28" />}
         text="Statistics"
         setSite={setSite}
-        name="Dashboard"
+        name="dashboard"
       />
       <SideBarIcon
         icon={<MdGroups size="28" />}
         text="Groups"
         setSite={setSite}
-        name="Groups"
+        name="groups"
       />
       <StyledButton ghost onClick={logOutUser}>
         Log Out

@@ -1,9 +1,9 @@
 import { Layout } from "antd";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import SideBar from "../components/SideBar";
-import { useAuthContext } from "../context/AuthContext";
-import { DashboardSite, GroupsSite, PlantsSite, NewPlantSite } from "../sites";
+import SideBar from "../../components/SideBar";
+import { useAuthContext } from "../../context/AuthContext";
+import { DashboardSite, GroupsSite, PlantsSite, NewPlantSite } from ".";
 
 const StyledContent = styled(Layout.Content)`
   height: 100vh;
@@ -19,7 +19,7 @@ const StyledSider = styled(Layout.Sider)`
 const MainPage = () => {
   const { logOutUser, authTokens } = useAuthContext();
   const [plants, setPlants] = useState<any[]>([]);
-  const [site, setSite] = useState<string>("");
+  const [site, setSite] = useState<string>("plants");
 
   useEffect(() => {
     getPlants();
@@ -43,27 +43,23 @@ const MainPage = () => {
     }
   };
 
-  const switchSite = () => {
-    switch (site) {
-      case "Plants":
-        return <PlantsSite />;
-      case "Dashboard":
-        return <DashboardSite />;
-      case "Groups":
-        return <GroupsSite />;
-      case "NewPlant":
-        return <NewPlantSite/>;
-      default:
-        return <PlantsSite />;
-    }
-  };
+  interface ISiteStates {
+    [key: string]: JSX.Element
+  }
+
+  const SITE_STATES: ISiteStates= {
+    dashboard: <DashboardSite/>,
+    plants: <PlantsSite/>,
+    groups: <GroupsSite/>,
+    addplant: <NewPlantSite/>
+  }
 
   return (
     <Layout>
       <StyledSider>
         <SideBar setSite={setSite} />
       </StyledSider>
-      <StyledContent>{switchSite()}</StyledContent>
+      <StyledContent>{SITE_STATES[site]}</StyledContent>
     </Layout>
   );
 };

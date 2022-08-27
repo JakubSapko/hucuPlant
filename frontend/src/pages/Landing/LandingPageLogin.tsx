@@ -32,7 +32,7 @@ const LandingPageLogIn: React.FC = () => {
                     <Input.Password/>
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" loading={fetching} onClick={() => {
+                    <Button type="primary" htmlType="submit" style={{backgroundColor: "#659e38", border: "none"}} loading={fetching} onClick={() => {
                         form
                             .validateFields()
                             .then((values: {[key: string] : string}) => {
