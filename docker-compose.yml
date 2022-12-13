@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: hucu
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  server:
+    build:
+      context: ./backend_express 
+    ports: 
+      - "8000:8000"
+    environment:
+      DATABASE_URL: 'postgresql://postgres:postgres@hucu:5432/hucuplant?connect_timeout=300'
+  client:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+volumes:
+  postgres:

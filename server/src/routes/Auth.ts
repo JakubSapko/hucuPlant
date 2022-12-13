@@ -41,7 +41,7 @@ auth.post("/login", async (req: Request, res: Response) => {
 auth.post("/register", async (req: Request, res: Response) => {
   const { email, username, password } = req.body;
 
-  const usernameResult: User | null = await prisma.user.findUnique({
+  const usernameResult: User | null  = await prisma.user.findUnique({
     where: {
       username: username,
     },

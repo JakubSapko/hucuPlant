@@ -18,6 +18,7 @@ export const LandingPageSignUp: React.FC = () => {
   const {fetching, registerUser} = useAuthContext();
 
   const onFinish = (values: ICredentials) => {
+    console.log(values);
     registerUser(values);
   }
 
@@ -31,7 +32,7 @@ export const LandingPageSignUp: React.FC = () => {
         <Form.Item name="email" label="Email address" rules={[{required: true}]}>
           <Input type={"email"}/>
         </Form.Item>
-        <Form.Item name="login" label="Login" rules={[{required: true}]}>
+        <Form.Item name="username" label="username" rules={[{required: true}]}>
           <Input type={"text"}/>
         </Form.Item>
         <Form.Item name="password" label="Password" rules={[{required: true}]}>
