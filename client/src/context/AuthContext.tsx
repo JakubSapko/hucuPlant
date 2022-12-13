@@ -9,7 +9,6 @@ import {
 import jwt_decode from "jwt-decode";
 
 import { useNavigate } from "react-router-dom";
-import { render } from "react-dom";
 import { message } from "antd";
 
 interface IAuthContext {
@@ -136,7 +135,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
     const responseData = await response.json();
 
-    if (responseData.status !== 200){
+    if (response.status !== 200){
       setFetching(false);
       setTimeout(() => {
         message.error('Couldn\'t create your account, sorry!')
