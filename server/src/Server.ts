@@ -2,11 +2,11 @@ import express from "express";
 
 import cors from "cors";
 import * as bodyParser from "body-parser";
-
 import * as dotenv from "dotenv";
 
 import { auth as AuthRoute } from "./routes/Auth";
 import { plant as PlantsRoute } from "./routes/PlantAPI/Plants";
+import { staticR as StaticRoute } from "./routes/Static";
 
 export class Server {
   public app: express.Application;
@@ -44,5 +44,6 @@ export class Server {
   private setRoutes() {
     this.app.use('/api/auth', AuthRoute);
     this.app.use('/api/data', PlantsRoute);
+    this.app.use('/static', StaticRoute);
   }
 }
