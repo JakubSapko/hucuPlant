@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+export enum QueryKeys {
+    PLANT = '/plant/',
+    AUTH = '/auth/',
+}
+
 class ApiCaller {
     private apiPath: string;
     
