@@ -42,7 +42,7 @@ export const PlantsContextProvider = ({
 
   const getPlants = async () => {
     let accessToken = authTokens?.access;
-    const response = await fetch("http://localhost:8000/api/plants_data/", {
+    const response = await fetch("http://localhost:8000/api/data/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +61,7 @@ export const PlantsContextProvider = ({
   const updateTracking = async (plant: IPlant) => {
     plant.tracked = !plant.tracked;
     let accessToken = authTokens?.access;
-    const response: Response = await fetch(`http://localhost:8000/api/update_plant/${plant.id}`, {
+    const response: Response = await fetch(`http://localhost:8000/api/data/${plant.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
