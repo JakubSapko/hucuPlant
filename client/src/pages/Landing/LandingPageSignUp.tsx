@@ -15,7 +15,7 @@ export const LandingPageSignUp: React.FC = () => {
 
   const [form] = Form.useForm();
 
-  const {fetching, registerUser} = useAuthContext();
+  const {isFetching, registerUser} = useAuthContext();
 
   const onFinish = (values: ICredentials) => {
     registerUser(values);
@@ -37,7 +37,7 @@ export const LandingPageSignUp: React.FC = () => {
         <Form.Item name="password" label="Password" rules={[{required: true}]}>
           <Input type={"password"}/>
         </Form.Item>
-        <Button htmlType="submit" type="primary" style={{backgroundColor: "#659e38", border: "none"}} loading={fetching}>
+        <Button htmlType="submit" type="primary" style={{backgroundColor: "#659e38", border: "none"}} loading={isFetching}>
           Submit
         </Button>
       </Form>

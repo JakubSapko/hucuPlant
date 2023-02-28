@@ -7,7 +7,7 @@ const LandingPageLogIn: React.FC = () => {
     
     const [form] = Form.useForm();
 
-    const {logInUser, fetching} = useAuthContext();
+    const {logInUser, isFetching} = useAuthContext();
 
     return(
         <div>
@@ -32,7 +32,7 @@ const LandingPageLogIn: React.FC = () => {
                     <Input.Password/>
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" style={{backgroundColor: "#659e38", border: "none"}} loading={fetching} onClick={() => {
+                    <Button type="primary" htmlType="submit" style={{backgroundColor: "#659e38", border: "none"}} loading={isFetching} onClick={() => {
                         form
                             .validateFields()
                             .then((values: {[key: string] : string}) => {

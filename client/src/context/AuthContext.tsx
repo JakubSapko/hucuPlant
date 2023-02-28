@@ -17,7 +17,7 @@ interface IAuthContext {
   logInUser: (username: string, password: string) => void;
   logOutUser: () => void;
   registerUser: (credentials: ICredentials) => void;
-  fetching: boolean;
+  isFetching: boolean;
 }
 
 export interface ICredentials {
@@ -41,7 +41,7 @@ const AuthContext = createContext<IAuthContext>({
   logInUser: () => {},
   logOutUser: () => {},
   registerUser: () => {},
-  fetching: false
+  isFetching: false
 });
 
 export const useAuthContext = () => {
@@ -60,7 +60,7 @@ interface IAuthTokens {
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [authTokens, setAuthTokens] = useState<IAuthTokens | null>(null);
   const [user, setUser] = useState<IUser | null>(null);
-  const [fetching, setFetching] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   useEffect(() => {
     const storedTokens = localStorage.getItem("authTokens");
@@ -86,7 +86,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   const logInUser = async (username: string, password: string) => {
 
-    setFetching(true);
+    setIsFetching(true);
 
     const response = await fetch("http://localhost:8000/api/auth/login/", {
       method: "POST",
@@ -104,7 +104,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       setTimeout(() => {
         message.error('Invalid credentials!')
       }, 1500)
-      setFetching(false);
+      setIsFetching(false);
       return;
     } 
     setAuthTokens(data);
@@ -113,7 +113,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     localStorage.setItem("authTokens", JSON.stringify(data));
     navigate("/home", { replace: true });
 
-    setFetching(false);
+    setIsFetching(false);
     setTimeout(() => {
       message.success('Log in successfull!')
     }, 1500);
@@ -123,7 +123,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const registerUser = async (credentials: ICredentials) => {
     const { email, username, password } = credentials;
 
-    setFetching(true);
+    setIsFetching(true);
 
     const response = await fetch("http://localhost:8000/api/auth/register/", {
       method: "POST",
@@ -136,14 +136,14 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     const responseData = await response.json();
 
     if (response.status !== 200){
-      setFetching(false);
+      setIsFetching(false);
       setTimeout(() => {
         message.error('Couldn\'t create your account, sorry!')
       }, 1500)
       return responseData.body;
     }
 
-    setFetching(false);
+    setIsFetching(false);
     setTimeout(() => {
       message.success('Account created successfully!')
     }, 1500);
@@ -155,7 +155,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     logInUser: logInUser,
     logOutUser: logOutUser,
     registerUser: registerUser,
-    fetching: fetching
+    isFetching: isFetching
   };
 
   return (

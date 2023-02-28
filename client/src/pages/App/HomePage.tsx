@@ -27,7 +27,7 @@ const MainPage = () => {
 
   const getPlants = async () => {
     let accessToken = authTokens?.access;
-    const response = await fetch("http://localhost:8000/api/plants_data/", {
+    const response = await fetch("http://localhost:8000/api/data/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
