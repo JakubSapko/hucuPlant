@@ -1,23 +1,32 @@
-###################
-# BUILD FOR LOCAL DEVELOPMENT
-###################
+# ###################
+# # BUILD FOR LOCAL DEVELOPMENT
+# ###################
 
-FROM node:18-alpine As development
+# FROM node:18-alpine As development
 
-# Create app directory
-WORKDIR /usr/src/app
+# # Create app directory
+# WORKDIR /usr/src/app
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
-# Copying this first prevents re-running npm install on every code change.
-COPY --chown=node:node package*.json ./
+# # Copy application dependency manifests to the container image.
+# # A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
+# # Copying this first prevents re-running npm install on every code change.
+# COPY --chown=node:node package*.json ./
 
-# Install app dependencies using the `npm ci` command instead of `npm install`
-RUN npm ci
+# # Install app dependencies using the `npm ci` command instead of `npm install`
+# RUN npm ci
 
-# Bundle app source
-COPY --chown=node:node . .
+# # Bundle app source
+# COPY --chown=node:node . .
 
-# Use the node user from the image (instead of the root user)
-USER node
+# # Use the node user from the image (instead of the root user)
+# USER node
 
+FROM node:16.14-alpine3.14
+
+WORKDIR /app
+
+COPY package.json .
+COPY package-lock.json .
+RUN npm install 
+
+CMD ["npm", "start"]
