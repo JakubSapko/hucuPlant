@@ -4,8 +4,8 @@ import { BsFillPieChartFill } from "react-icons/bs";
 import { MdGroups } from "react-icons/md";
 import { GiPlantRoots } from "react-icons/gi";
 import { Button } from "antd";
-import { useAuthContext } from "../context/AuthContext";
 import styled from "styled-components";
+import { useLogout } from "../hooks/auth/useLogout";
 
 interface IIcon {
   icon: JSX.Element;
@@ -28,7 +28,7 @@ const StyledButton = styled(Button)`
 `;
 
 const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
-  const { logOutUser } = useAuthContext();
+  const logOutUser = useLogout();
 
   return (
     <div>
@@ -56,7 +56,7 @@ const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
         setSite={setSite}
         name="groups"
       />
-      <StyledButton ghost onClick={logOutUser}>
+      <StyledButton ghost onClick={() => logOutUser}>
         Log Out
       </StyledButton>
     </div>

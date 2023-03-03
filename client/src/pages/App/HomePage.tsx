@@ -17,31 +17,31 @@ const StyledSider = styled(Layout.Sider)`
 
 
 const MainPage = () => {
-  const { logOutUser, authTokens } = useAuthContext();
-  const [plants, setPlants] = useState<any[]>([]);
-  const [site, setSite] = useState<string>("plants");
+  // const { logoutUser, authTokens } = useAuthContext();
+  // const [plants, setPlants] = useState<any[]>([]);
+  // const [site, setSite] = useState<string>("plants");
 
-  useEffect(() => {
-    getPlants();
-  }, []);
+  // useEffect(() => {
+  //   getPlants();
+  // }, []);
 
-  const getPlants = async () => {
-    let accessToken = authTokens?.access;
-    const response = await fetch("http://localhost:8000/api/data/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(accessToken),
-      },
-    });
-    let data = await response.json();
+  // const getPlants = async () => {
+  //   let accessToken = authTokens?.access;
+  //   const response = await fetch("http://localhost:8000/api/data/", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + String(accessToken),
+  //     },
+  //   });
+  //   let data = await response.json();
 
-    if (response.status === 200) {
-      setPlants(data);
-    } else if (response.statusText === "Unauthorized") {
-      logOutUser();
-    }
-  };
+  //   if (response.status === 200) {
+  //     setPlants(data);
+  //   } else if (response.statusText === "Unauthorized") {
+  //     logoutUser();
+  //   }
+  // };
 
   interface ISiteStates {
     [key: string]: JSX.Element
@@ -56,10 +56,10 @@ const MainPage = () => {
 
   return (
     <Layout>
-      <StyledSider>
+      {/* <StyledSider>
         <SideBar setSite={setSite} />
       </StyledSider>
-      <StyledContent>{SITE_STATES[site]}</StyledContent>
+      <StyledContent>{SITE_STATES[site]}</StyledContent> */}
     </Layout>
   );
 };

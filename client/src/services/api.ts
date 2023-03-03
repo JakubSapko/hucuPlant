@@ -24,7 +24,7 @@ class ApiCaller {
         return `${this.apiPath}/${endpoint}`;
     }
 
-    get<TData, T>(endpoint: string, data?: TData){
+    get<T>(endpoint: string, data?: string){
         return axios.get<T>(this.getApiPath(endpoint), {
             params: data,
         })
@@ -32,7 +32,7 @@ class ApiCaller {
     }
 
     post<TData, T>(endpoint: string, data?: TData){
-        return axios.post<T>(this.getApiPath(endpoint), data, {
+        return axios.post<TData, T>(this.getApiPath(endpoint), data, {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
