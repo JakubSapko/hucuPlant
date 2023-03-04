@@ -73,7 +73,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }, []);
 
     const logoutUser = () => {
-        console.log("dupa");
         setAuthTokens(null);
         setUser(null);
         localStorage.removeItem("authTokens");

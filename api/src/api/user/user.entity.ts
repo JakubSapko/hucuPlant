@@ -1,5 +1,12 @@
 import { Exclude } from 'class-transformer';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Plant } from '../plants/entities/plant.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -18,4 +25,7 @@ export class User extends BaseEntity {
 
   @Column({ type: 'timestamp', nullable: true, default: null })
   public lastLoginAt: Date | null;
+
+  @OneToMany(() => Plant, (plant) => plant.owner)
+  public plants: Plant[];
 }
