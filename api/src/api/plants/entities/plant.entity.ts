@@ -1,11 +1,5 @@
 import { User } from '@/api/user/user.entity';
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Plant {
