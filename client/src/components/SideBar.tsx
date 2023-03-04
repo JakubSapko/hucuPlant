@@ -5,7 +5,7 @@ import { MdGroups } from "react-icons/md";
 import { GiPlantRoots } from "react-icons/gi";
 import { Button } from "antd";
 import styled from "styled-components";
-import { useLogout } from "../hooks/auth/useLogout";
+import { useAuthContext } from "../context/AuthContext";
 
 interface IIcon {
   icon: JSX.Element;
@@ -28,8 +28,8 @@ const StyledButton = styled(Button)`
 `;
 
 const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
-  const logOutUser = useLogout();
-
+  const { logoutUser } = useAuthContext();
+  console.log("test");
   return (
     <div>
       <SideBarIcon
@@ -56,7 +56,7 @@ const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
         setSite={setSite}
         name="groups"
       />
-      <StyledButton ghost onClick={() => logOutUser}>
+      <StyledButton ghost onClick={() => logoutUser()}>
         Log Out
       </StyledButton>
     </div>

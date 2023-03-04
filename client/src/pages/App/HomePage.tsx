@@ -17,13 +17,8 @@ const StyledSider = styled(Layout.Sider)`
 
 
 const MainPage = () => {
-  // const { logoutUser, authTokens } = useAuthContext();
-  // const [plants, setPlants] = useState<any[]>([]);
-  // const [site, setSite] = useState<string>("plants");
+  const [site, setSite] = useState<string>("plants");
 
-  // useEffect(() => {
-  //   getPlants();
-  // }, []);
 
   // const getPlants = async () => {
   //   let accessToken = authTokens?.access;
@@ -56,10 +51,10 @@ const MainPage = () => {
 
   return (
     <Layout>
-      {/* <StyledSider>
+      <StyledSider>
         <SideBar setSite={setSite} />
       </StyledSider>
-      <StyledContent>{SITE_STATES[site]}</StyledContent> */}
+      <StyledContent>{SITE_STATES[site]}</StyledContent>
     </Layout>
   );
 };
