@@ -13,30 +13,33 @@ import { UpdatePlantDto } from './dto/update-plant.dto';
 
 @Controller('plants')
 export class PlantsController {
-  constructor(private readonly plantsService: PlantsService) {}
+  constructor(private plantsService: PlantsService) {}
 
   @Post()
-  create(@Body() createPlantDto: CreatePlantDto) {
+  async create(@Body() createPlantDto: CreatePlantDto) {
     return this.plantsService.create(createPlantDto);
   }
 
-  @Get()
-  findAll() {
-    return this.plantsService.findAll();
+  @Get(':username')
+  async findAll(@Param('username') username: string) {
+    return this.plantsService.findAll(username);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.plantsService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePlantDto: UpdatePlantDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updatePlantDto: UpdatePlantDto,
+  ) {
     return this.plantsService.update(+id, updatePlantDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.plantsService.remove(+id);
   }
 }

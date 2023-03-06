@@ -5,7 +5,6 @@ import {
   createContext,
   ReactNode,
 } from "react";
-import { useLogout } from "../hooks/auth/useLogout";
 import { IPlant } from "../types/plant";
 import { useAuthContext } from "./AuthContext";
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export enum PlantKeys {
-    BASE = 'plant/',
+    BASE = 'plants/',
 }
 
 export enum AuthKeys {

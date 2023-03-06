@@ -4,6 +4,7 @@ import styled from "styled-components";
 import SideBar from "../../components/SideBar";
 import { useAuthContext } from "../../context/AuthContext";
 import { DashboardSite, GroupsSite, PlantsSite, NewPlantSite } from ".";
+import { usePlants } from "../../hooks/plants/usePlants";
 
 const StyledContent = styled(Layout.Content)`
   height: 100vh;
@@ -19,6 +20,8 @@ const StyledSider = styled(Layout.Sider)`
 const MainPage = () => {
   const [site, setSite] = useState<string>("plants");
 
+  const data = usePlants();
+  console.log(data);
 
   // const getPlants = async () => {
   //   let accessToken = authTokens?.access;

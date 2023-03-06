@@ -1,8 +1,14 @@
 import { User } from '@/api/user/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
-export class Plant {
+export class Plant extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
