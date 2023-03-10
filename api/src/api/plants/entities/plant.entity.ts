@@ -2,6 +2,7 @@ import { User } from '@/api/user/user.entity';
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -10,32 +11,35 @@ import {
 @Entity()
 export class Plant extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
-  @Column()
+  @Column({ type: 'varchar' })
   name: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true })
   species: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true })
   description: string;
 
-  @Column()
+  @CreateDateColumn({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP(6)',
+  })
   createdAt: Date;
 
-  @ManyToOne(() => User, (owner) => owner.plants)
-  owner: User;
+  // @ManyToOne(() => User, (owner) => owner.plants)
+  // owner: User;
 
-  @Column()
+  @Column({ type: 'boolean', default: true })
   tracked: boolean;
 
-  @Column()
-  last_watered: Date;
+  @Column({ type: 'timestamptz', nullable: true })
+  lastWatered: Date;
 
-  @Column()
-  how_often: number;
+  @Column({ type: 'int', nullable: true })
+  howOften: number;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true, default: null })
   img: string;
 }

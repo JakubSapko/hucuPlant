@@ -6,23 +6,26 @@ import {
   Patch,
   Param,
   Delete,
+  Logger,
+  Req,
 } from '@nestjs/common';
 import { PlantsService } from './plants.service';
 import { CreatePlantDto } from './dto/create-plant.dto';
 import { UpdatePlantDto } from './dto/update-plant.dto';
+import { Request } from 'express';
 
 @Controller('plants')
 export class PlantsController {
   constructor(private plantsService: PlantsService) {}
 
   @Post()
-  async create(@Body() createPlantDto: CreatePlantDto) {
-    return this.plantsService.create(createPlantDto);
+  async create(@Body() body: CreatePlantDto) {
+    return this.plantsService.create(body);
   }
 
-  @Get(':username')
-  async findAll(@Param('username') username: string) {
-    return this.plantsService.findAll(username);
+  @Get()
+  async findAll() {
+    return this.plantsService.findAll();
   }
 
   @Get(':id')

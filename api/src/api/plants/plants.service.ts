@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { User } from '../user/user.entity';
 import { CreatePlantDto } from './dto/create-plant.dto';
 import { UpdatePlantDto } from './dto/update-plant.dto';
 import { Plant } from './entities/plant.entity';
@@ -8,18 +9,36 @@ import { Plant } from './entities/plant.entity';
 @Injectable()
 export class PlantsService {
   @InjectRepository(Plant)
-  private readonly repository: Repository<Plant>;
+  private readonly plantRepository: Repository<Plant>;
+  @InjectRepository(User)
+  private readonly userRepository: Repository<User>;
 
-  async create(createPlantDto: CreatePlantDto) {
-    return 'This action adds a new plant';
+  async create(createPlantDto: CreatePlantDto): Promise<Plant | never> {
+    const { username, plantData }: CreatePlantDto = createPlantDto;
+
+    const user = await this.userRepository.findOne({
+      where: {
+        username,
+      },
+    });
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    const plantDataT = { user, ...plantData };
+    const plant: Plant = this.plantRepository.create(plantDataT);
+
+    return plant.save();
   }
 
-  async findAll(username: string) {
-    return `This action returns all plants`;
+  async findAll(): Promise<Plant[]> {
+    const usersPlants: Plant[] = await this.plantRepository.find();
+    return usersPlants;
   }
 
   async findOne(id: number) {
-    const plant: Plant = await this.repository.findOneOrFail({
+    const plant: Plant = await this.plantRepository.findOneOrFail({
       where: {
         id: id,
       },

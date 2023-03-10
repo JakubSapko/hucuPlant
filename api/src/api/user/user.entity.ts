@@ -26,6 +26,6 @@ export class User extends BaseEntity {
   @Column({ type: 'timestamp', nullable: true, default: null })
   public lastLoginAt: Date | null;
 
-  @OneToMany(() => Plant, (plant) => plant.owner)
-  public plants: Plant[];
+  // @OneToMany(() => Plant, (plant) => plant.owner)
+  // public plants: Plant[];
 }
