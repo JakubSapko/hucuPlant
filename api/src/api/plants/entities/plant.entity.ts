@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -28,8 +29,8 @@ export class Plant extends BaseEntity {
   })
   createdAt: Date;
 
-  // @ManyToOne(() => User, (owner) => owner.plants)
-  // owner: User;
+  @ManyToOne(() => User, (user) => user.plants)
+  owner: User;
 
   @Column({ type: 'boolean', default: true })
   tracked: boolean;

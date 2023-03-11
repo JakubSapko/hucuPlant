@@ -8,6 +8,7 @@ import {
   Delete,
   Logger,
   Req,
+  Query,
 } from '@nestjs/common';
 import { PlantsService } from './plants.service';
 import { CreatePlantDto } from './dto/create-plant.dto';
@@ -24,8 +25,8 @@ export class PlantsController {
   }
 
   @Get()
-  async findAll() {
-    return this.plantsService.findAll();
+  async findAll(@Query() query: { username: string }) {
+    return this.plantsService.findAll(query.username);
   }
 
   @Get(':id')

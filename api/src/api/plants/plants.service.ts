@@ -26,15 +26,27 @@ export class PlantsService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    const plantDataT = { user, ...plantData };
+    const plantDataT = { owner: user, ...plantData };
     const plant: Plant = this.plantRepository.create(plantDataT);
 
     return plant.save();
   }
 
-  async findAll(): Promise<Plant[]> {
-    const usersPlants: Plant[] = await this.plantRepository.find();
-    return usersPlants;
+  async findAll(username: string): Promise<Plant[]> {
+    const user: User = await this.userRepository.findOne({
+      where: {
+        username,
+      },
+      relations: {
+        plants: true,
+      },
+    });
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.FOUND);
+    }
+
+    return user.plants;
   }
 
   async findOne(id: number) {
