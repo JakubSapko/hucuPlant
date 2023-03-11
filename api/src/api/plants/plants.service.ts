@@ -49,8 +49,8 @@ export class PlantsService {
     return user.plants;
   }
 
-  async findOne(id: number) {
-    const plant: Plant = await this.plantRepository.findOneOrFail({
+  async findOne(id: number): Promise<Plant> {
+    const plant: Plant = await this.plantRepository.findOne({
       where: {
         id: id,
       },
@@ -58,8 +58,10 @@ export class PlantsService {
     return plant;
   }
 
-  async update(id: number, updatePlantDto: UpdatePlantDto) {
-    return `This action updates a #${id} plant`;
+  async update(id: number, updatePlantDto: UpdatePlantDto): Promise<Plant> {
+    const updatePlant = await this.plantRepository.update(id, updatePlantDto);
+    const plant = await this.plantRepository.findOne({ where: { id } });
+    return plant;
   }
 
   async remove(id: number) {
