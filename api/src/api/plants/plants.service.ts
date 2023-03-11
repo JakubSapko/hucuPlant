@@ -55,8 +55,7 @@ export class PlantsService {
         id: id,
       },
     });
-    console.log(plant);
-    return `This action returns a #${id} plant`;
+    return plant;
   }
 
   async update(id: number, updatePlantDto: UpdatePlantDto) {
