@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { User } from '../user/user.entity';
 import { CreatePlantDto } from './dto/create-plant.dto';
 import { UpdatePlantDto } from './dto/update-plant.dto';
@@ -59,12 +59,18 @@ export class PlantsService {
   }
 
   async update(id: number, updatePlantDto: UpdatePlantDto): Promise<Plant> {
-    const updatePlant = await this.plantRepository.update(id, updatePlantDto);
-    const plant = await this.plantRepository.findOne({ where: { id } });
+    const updatePlant: UpdateResult = await this.plantRepository.update(
+      id,
+      updatePlantDto,
+    );
+    const plant: Plant = await this.plantRepository.findOne({ where: { id } });
     return plant;
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} plant`;
+  async remove(id: number): Promise<number> {
+    const removedPlant: DeleteResult = await this.plantRepository.delete({
+      id,
+    });
+    return removedPlant.affected;
   }
 }
