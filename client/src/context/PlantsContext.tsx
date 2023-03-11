@@ -32,7 +32,8 @@ type PlantsContextProviderProps = {
 export const PlantsContextProvider = ({
   children,
 }: PlantsContextProviderProps) => {
-  const { authTokens, logOutUser } = useAuthContext();
+  const { authTokens, logoutUser } = useAuthContext();
+
 
   const [plants, setPlants] = useState<IPlant[] | null>(null);
 
@@ -41,7 +42,7 @@ export const PlantsContextProvider = ({
     }, [])
 
   const getPlants = async () => {
-    let accessToken = authTokens?.access;
+    let accessToken = authTokens;
     const response = await fetch("http://localhost:8000/api/data/", {
       method: "GET",
       headers: {
@@ -54,13 +55,13 @@ export const PlantsContextProvider = ({
     if (response.status === 200) {
       setPlants(data);
     } else if (response.statusText === "Unauthorized") {
-      logOutUser();
+      logoutUser();
     }
   };
 
   const updateTracking = async (plant: IPlant) => {
     plant.tracked = !plant.tracked;
-    let accessToken = authTokens?.access;
+    let accessToken = authTokens;
     const response: Response = await fetch(`http://localhost:8000/api/data/${plant.id}`, {
       method: "POST",
       headers: {

@@ -1,53 +1,67 @@
-import React from 'react';
-import {Button, Form, Input} from 'antd';
-import { useAuthContext } from '../../context/AuthContext';
-
+import React from "react";
+import { Button, Form, Input, message } from "antd";
+import { ILoginCredentials, useLogin } from "../../hooks/auth/useLogin";
+import { FormInstance } from "rc-field-form";
 
 const LandingPageLogIn: React.FC = () => {
-    
+    const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
+    const loginUser = useLogin(messageApi);
 
-    const {logInUser, isFetching} = useAuthContext();
-
-    return(
+    const handleLogin = async (
+        form: FormInstance
+    ) => {
+        try {
+            const loginCredentials: ILoginCredentials = await form.validateFields();
+            await loginUser.mutate(loginCredentials);
+        } catch (error) {
+            messageApi.error(`An error ${error} occured.`);
+        }
+    };
+    return (
         <div>
+            {contextHolder}
             <Form
                 name="loginForm"
-                initialValues={{remember: true}}
+                initialValues={{ remember: true }}
                 autoComplete="off"
                 form={form}
             >
                 <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[{required: true, message: "Please input your username!"}]}
+                    label="Email"
+                    name="email"
+                    rules={[
+                        { required: true, message: "Please input your email!" },
+                    ]}
                 >
-                    <Input/>
+                    <Input />
                 </Form.Item>
                 <Form.Item
                     label="Password"
                     name="password"
-                    rules={[{required: true, message: "Please input your password!"}]}
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your password!",
+                        },
+                    ]}
                 >
-                    <Input.Password/>
+                    <Input.Password />
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" style={{backgroundColor: "#659e38", border: "none"}} loading={isFetching} onClick={() => {
-                        form
-                            .validateFields()
-                            .then((values: {[key: string] : string}) => {
-                                logInUser(values.username, values.password);
-                            })
-                            .catch((info) => {
-                                console.log("Login failed", info);
-                            })
-                        }}>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        style={{ backgroundColor: "#659e38", border: "none" }}
+                        loading={loginUser.isLoading}
+                        onClick={() => handleLogin(form)}
+                    >
                         Submit
                     </Button>
                 </Form.Item>
             </Form>
         </div>
-    )
-}
+    );
+};
 
 export default LandingPageLogIn;

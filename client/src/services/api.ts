@@ -1,26 +1,30 @@
 import axios from 'axios';
 
-export enum QueryKeys {
-    PLANT = '/plant/',
-    AUTH = '/auth/',
+export enum PlantKeys {
+    BASE = 'plants/',
 }
 
+export enum AuthKeys {
+    REGISTER = 'auth/register/',
+    LOGIN = 'auth/login',
+    REFRESH_TOKEN = 'auth/refresh/'
+}
 class ApiCaller {
     private apiPath: string;
     
     constructor(urlSchema: string){
         const apiPort = process.env.REACT_APP_BACKEND_PORT 
         ? process.env.REACT_APP_BACKEND_PORT
-        : 8000;
+        : 3000;
 
         this.apiPath = `${urlSchema}:${apiPort}`;
     }
 
     getApiPath(endpoint: string){
-        return `${this.apiPath}/api/${endpoint}`;
+        return `${this.apiPath}/${endpoint}`;
     }
 
-    get<TData, T>(endpoint: string, data?: TData){
+    get<T>(endpoint: string, data?: string){
         return axios.get<T>(this.getApiPath(endpoint), {
             params: data,
         })
@@ -28,7 +32,7 @@ class ApiCaller {
     }
 
     post<TData, T>(endpoint: string, data?: TData){
-        return axios.post<T>(this.getApiPath(endpoint), data, {
+        return axios.post<TData, T>(this.getApiPath(endpoint), data, {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
