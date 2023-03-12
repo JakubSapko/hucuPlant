@@ -1,4 +1,5 @@
-import React, { ReactNode, useState } from "react";
+import { Card } from "antd";
+import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import styled from "styled-components";
 import { ICardProps } from "../types/plant";
 import { DeleteButton } from "./PlantCardUtils/DeleteButton";
@@ -15,11 +16,6 @@ const CardContent = () => {
 
 const CardOptions = () => {
     return <StyledContainer>opcje</StyledContainer>;
-};
-
-const CardTabs = {
-    CONTENT: <CardContent />,
-    OPTIONS: <CardOptions />,
 };
 
 const StyledCard = styled.div`
@@ -48,8 +44,12 @@ const StyledFooter = styled.div`
     width: 100%;
     background-color: lightblue;
     align-self: flex-end;
-`;
+    `;
 
+const CardTabs = {
+    CONTENT: <CardContent />,
+    OPTIONS: <CardOptions />,
+};
 const CardHeader = () => {
     return (
         <StyledHeader>
@@ -58,8 +58,17 @@ const CardHeader = () => {
     );
 };
 
-const CardFooter = () => {
-    return <StyledFooter>stopy</StyledFooter>;
+interface IFooter {
+    getNextTabName: () => string;
+    switchTabs: () => void;
+}
+
+const CardFooter: React.FC<IFooter> = ({getNextTabName, switchTabs }) => {
+    return <StyledFooter>
+        <div onClick={() => switchTabs()}>
+            {getNextTabName()}
+        </div>
+    </StyledFooter>;
 };
 
 export const PlantCardP: React.FC<ICardProps> = ({ plant }) => {
@@ -73,11 +82,18 @@ export const PlantCardP: React.FC<ICardProps> = ({ plant }) => {
         setTab(CardTabs.CONTENT);
     };
 
+    const getNextTabName = () => {
+        if (tab === CardTabs.CONTENT){
+            return "Options";
+        };
+        return "Plant";
+    }
+
     return (
-        <StyledCard onClick={switchTabs}>
+        <StyledCard>
             <CardHeader />
             {tab}
-            <CardFooter />
+            <CardFooter getNextTabName={getNextTabName} switchTabs={switchTabs} />
         </StyledCard>
     );
 };
