@@ -19,28 +19,7 @@ const StyledSider = styled(Layout.Sider)`
 
 const MainPage = () => {
   const [site, setSite] = useState<string>("plants");
-
-  const data = usePlants();
-  console.log(data);
-
-  // const getPlants = async () => {
-  //   let accessToken = authTokens?.access;
-  //   const response = await fetch("http://localhost:8000/api/data/", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + String(accessToken),
-  //     },
-  //   });
-  //   let data = await response.json();
-
-  //   if (response.status === 200) {
-  //     setPlants(data);
-  //   } else if (response.statusText === "Unauthorized") {
-  //     logoutUser();
-  //   }
-  // };
-
+  
   interface ISiteStates {
     [key: string]: JSX.Element
   }

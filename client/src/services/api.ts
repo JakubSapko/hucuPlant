@@ -25,6 +25,7 @@ class ApiCaller {
     }
 
     get<T>(endpoint: string, data?: string){
+        console.log(this.getApiPath(endpoint));
         return axios.get<T>(this.getApiPath(endpoint), {
             params: data,
         })

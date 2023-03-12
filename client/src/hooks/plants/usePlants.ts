@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { API, PlantKeys } from "../../services/api";
+import { IPlant } from "../../types/plant";
 
 export const usePlants = () => {
-    // const plantsQuery = useQuery({
-    //     queryKey: ["Plants"],
-    //     queryFn: () => {
-    //         API.get(PlantKeys.BASE);
-    //     },
-    //     onSuccess: () => {
-    //         console.log("success")
-    //     },
-    //     onError: () => {
-    //         console.log("ups")
-    //     }
-    // });
-    // return plantsQuery;
-    return API.get(PlantKeys.BASE);
+    const plantsQuery = useQuery({
+        queryKey: ["Plants"],
+        queryFn: () => {
+            return API.get<IPlant[]>(PlantKeys.BASE);
+        },
+        onSuccess: (data) => {
+            console.log("success", data);
+        },
+        onError: () => {
+            console.log("ups");
+        },
+    });
+    return plantsQuery;
 };

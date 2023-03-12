@@ -92,54 +92,7 @@ export const LandingPage = () => {
         },
     ];
 
-    const linksWhenSignedIn: Array<MenuItemType> = [
-        {
-            key: 1,
-            label: "Home",
-            style: {
-                color: "black",
-                transition: "none",
-                border: "none",
-            },
-            onClick: () => {
-                setLandingPageSubpage("home");
-            },
-        },
-        {
-            key: 2,
-            label: "Overview",
-            style: {
-                color: "black",
-                transition: "none",
-                border: "none",
-            },
-            onClick: () => {
-                setLandingPageSubpage("overview");
-            },
-        },
-        {
-            key: 3,
-            label: "Sign Up",
-            style: {
-                color: "black",
-                transition: "none",
-                border: "none",
-            },
-            onClick: () => {
-                setLandingPageSubpage("signup");
-            },
-        },
-        {
-            key: 4,
-            label: isAuthenticated ? "App" : "Log In",
-            style: {
-                color: "black",
-                transition: "none",
-                border: "none",
-            },
-            onClick: () => setLandingPageSubpage("login"),
-        },
-    ];
+
 
     const switchSubpage = () => {
         switch (landingPageSubpage) {
