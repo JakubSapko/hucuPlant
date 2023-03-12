@@ -29,15 +29,12 @@ export const useLogin = (messageApi: MessageInstance) => {
         },
         onSuccess: (responseData) => {
             const token: string = responseData.data;
-
             setAuthTokens(token);
-
             const decodedUser: IUser = jwt_decode(token);
             setUser(decodedUser);
 
             localStorage.setItem("authTokens", JSON.stringify(token));
 
-            messageApi.success("Welcome to our app!");
             navigate("/home", { replace: true });
         },
         onError: () => {

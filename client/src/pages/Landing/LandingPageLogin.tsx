@@ -2,11 +2,20 @@ import React from "react";
 import { Button, Form, Input, message } from "antd";
 import { ILoginCredentials, useLogin } from "../../hooks/auth/useLogin";
 import { FormInstance } from "rc-field-form";
+import { useAuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LandingPageLogIn: React.FC = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
     const loginUser = useLogin(messageApi);
+
+    const { user } = useAuthContext();
+    const navigate = useNavigate();
+    
+    if (user) {
+        navigate('/home');
+    }
 
     const handleLogin = async (
         form: FormInstance

@@ -3,18 +3,16 @@ import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 
 interface IPrivateRouteProps {
-  outlet: JSX.Element;
+    outlet: JSX.Element;
 }
 
 const PrivateRoute: React.FC<IPrivateRouteProps> = ({ outlet }) => {
-  const { user } = useAuthContext();
-  const isAuthenticated = user ? true : false;
-  
-  if (isAuthenticated) {
-    return <>{outlet}</>;
-  } else {
-    return <Navigate to={{ pathname: "/" }} />;
-  }
+    const { isAuthenticated } = useAuthContext();
+    if (isAuthenticated) {
+        return <>{outlet}</>;
+    } else {
+        return <Navigate to={{ pathname: "/" }} />;
+    }
 };
 
 export default PrivateRoute;
