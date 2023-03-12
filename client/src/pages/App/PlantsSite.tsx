@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { NoDataPlaceholder } from "../../components/NoDataPlaceholder";
 import PlantCard from "../../components/PlantCard";
+import { PlantCardP } from "../../components/PlantCardP";
 import { usePlantsContext } from "../../context/PlantsContext";
 import { usePlants } from "../../hooks/plants/usePlants";
 
@@ -27,7 +28,7 @@ export const PlantsSite: React.FC = () => {
             {data?.length ? (
                 <Wrapper>
                     {data.map((plant) => {
-                        return <PlantCard plant={plant} />;
+                        return <PlantCardP plant={plant} />;
                     })}
                 </Wrapper>
             ) : (

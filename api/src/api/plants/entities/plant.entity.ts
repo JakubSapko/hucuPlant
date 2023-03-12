@@ -41,6 +41,6 @@ export class Plant extends BaseEntity {
   @Column({ type: 'int', nullable: true })
   howOften: number;
 
-  @Column({ type: 'varchar', nullable: true, default: null })
-  img: string;
+  // @Column({ type: 'varchar', nullable: true, default: null })
+  // img: string;
 }

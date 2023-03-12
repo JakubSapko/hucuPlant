@@ -7,7 +7,7 @@ export interface IPlant {
     date_added: string;
     how_often: number;
     last_watered: number;
-    img: string;
+    // img: string;
     tracked: boolean;
 }
 
