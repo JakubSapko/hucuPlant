@@ -13,7 +13,7 @@ const StyledCard = styled(Card)`
     overflow: hidden;
     z-index: 0;
     max-width: 300px;
-    min-height: 350px;
+    min-height: max-content;
 `;
 
 interface ITab {
@@ -25,15 +25,24 @@ const PlantCard: React.FC<ICardProps> = ({ plant }) => {
     const [tab, setTab] = useState<ITab>({
         cover: (
             <img
+                style={{ height: "300px", width: "200px" }}
                 alt="Plant"
                 src="https://img.freepik.com/free-vector/fern-branch-design-element_53876-119927.jpg?w=900&t=st=1678612666~exp=1678613266~hmac=e008aad24a726533f24d1a73cbe4b0873e66e0bc5d7e75154064739347cc7d82"
             />
         ),
 
         content: (
-            <Meta title={plant.name} description={plant.description}></Meta>
+            <Meta
+                title={plant.name}
+                description={
+                    plant.description ? plant.description : "No description"
+                }
+            ></Meta>
         ),
     });
+    const [switcher, setSwitcher] = useState([
+        <SettingOutlined key="settings" onClick={() => switchToSettings()} />,
+    ]);
 
     const switchToSettings = () => {
         const settings = {
@@ -41,37 +50,46 @@ const PlantCard: React.FC<ICardProps> = ({ plant }) => {
             content: <SettingsPanel plant={plant} />,
         };
         setTab(settings);
+        setSwitcher([
+            <EllipsisOutlined
+                key="ellipsis"
+                onClick={() => switchToOverview()}
+            />,
+        ]);
     };
 
     const switchToOverview = () => {
         const overview = {
             cover: (
                 <img
+                    style={{ height: "300px", width: "200px" }}
                     alt="Plant"
                     src="https://img.freepik.com/free-vector/fern-branch-design-element_53876-119927.jpg?w=900&t=st=1678612666~exp=1678613266~hmac=e008aad24a726533f24d1a73cbe4b0873e66e0bc5d7e75154064739347cc7d82"
                 />
             ),
             content: (
-                <Meta title={plant.name} description={plant.description}></Meta>
+                <Meta
+                    title={plant.name}
+                    description={
+                        plant.description ? plant.description : "No description"
+                    }
+                ></Meta>
             ),
         };
         setTab(overview);
+        setSwitcher([
+            <SettingOutlined
+                key="settings"
+                onClick={() => switchToSettings()}
+            />,
+        ]);
     };
 
     return (
         <StyledCard
             key={plant.name}
             cover={tab.cover}
-            actions={[
-                <EllipsisOutlined
-                    key="ellipsis"
-                    onClick={() => switchToOverview()}
-                />,
-                <SettingOutlined
-                    key="settings"
-                    onClick={() => switchToSettings()}
-                />,
-            ]}
+            actions={switcher}
             extra={<DeleteButton />}
         >
             {tab.content}

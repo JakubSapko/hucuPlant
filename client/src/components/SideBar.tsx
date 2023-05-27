@@ -8,43 +8,43 @@ import styled from "styled-components";
 import { useAuthContext } from "../context/AuthContext";
 
 interface IIcon {
-  icon: JSX.Element;
-  text: string;
-  name: string;
+    icon: JSX.Element;
+    text: string;
+    name: string;
 }
 
 interface ISideBarProps {
-  setSite: Dispatch<SetStateAction<string>>;
+    setSite: Dispatch<SetStateAction<string>>;
 }
 
 const StyledButton = styled(Button)`
-  border: none;
-  color: #f2e8cf !important;
-  &:hover {
-    color: #ed7d3a !important;
-  }
-  padding-left: 4.5rem;
-  margin-top: 1.5rem;
+    border: none;
+    color: #f2e8cf !important;
+    &:hover {
+        color: #ed7d3a !important;
+    }
+    padding-left: 4.5rem;
+    margin-top: 1.5rem;
 `;
 
 const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
-  const { logoutUser } = useAuthContext();
-  console.log("test");
-  return (
-    <div>
-      <SideBarIcon
-        icon={<RiPlantFill size="28" />}
-        text="Check out your plants!"
-        setSite={setSite}
-        name="plants"
-      />
-      <SideBarIcon
-        icon={<GiPlantRoots size="28" />}
-        text="Add a new plant"
-        setSite={setSite}
-        name="addplant"
-      />
-      <SideBarIcon
+    const { logoutUser } = useAuthContext();
+    console.log("test");
+    return (
+        <div>
+            <SideBarIcon
+                icon={<RiPlantFill size="28" />}
+                text="Check out your plants!"
+                setSite={setSite}
+                name="plants"
+            />
+            <SideBarIcon
+                icon={<GiPlantRoots size="28" />}
+                text="Add a new plant"
+                setSite={setSite}
+                name="addplant"
+            />
+            {/* <SideBarIcon
         icon={<BsFillPieChartFill size="28" />}
         text="Statistics"
         setSite={setSite}
@@ -55,26 +55,28 @@ const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
         text="Groups"
         setSite={setSite}
         name="groups"
-      />
-      <StyledButton ghost onClick={() => logoutUser()}>
-        Log Out
-      </StyledButton>
-    </div>
-  );
+      /> */}
+            <StyledButton ghost onClick={() => logoutUser()}>
+                Log Out
+            </StyledButton>
+        </div>
+    );
 };
 
 const SideBarIcon: React.FC<IIcon & ISideBarProps> = ({
-  icon,
-  text,
-  name,
-  setSite,
+    icon,
+    text,
+    name,
+    setSite,
 }) => {
-  return (
-    <div className="sidebar-icon group" onClick={() => setSite(name)}>
-      {icon}
-      <span className="sidebar-tooltip group-hover:scale-100">{text}</span>
-    </div>
-  );
+    return (
+        <div className="sidebar-icon group" onClick={() => setSite(name)}>
+            {icon}
+            <span className="sidebar-tooltip group-hover:scale-100">
+                {text}
+            </span>
+        </div>
+    );
 };
 
 export default SideBar;
