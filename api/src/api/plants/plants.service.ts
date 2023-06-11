@@ -1,22 +1,16 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
-import { User } from '../user/user.entity';
 import { CreatePlantDto } from './dto/create-plant.dto';
 import { UpdatePlantDto } from './dto/update-plant.dto';
-import { Plant } from './entities/plant.entity';
-
+import { Plant, User } from '@prisma/client';
+import { PrismaService } from '@/prisma.service';
 @Injectable()
 export class PlantsService {
-  @InjectRepository(Plant)
-  private readonly plantRepository: Repository<Plant>;
-  @InjectRepository(User)
-  private readonly userRepository: Repository<User>;
+  constructor(private prisma: PrismaService) {}
 
   async create(createPlantDto: CreatePlantDto): Promise<Plant | never> {
     const { username, plantData }: CreatePlantDto = createPlantDto;
 
-    const user = await this.userRepository.findOne({
+    const user = await this.prisma.user.findFirst({
       where: {
         username,
       },
@@ -26,31 +20,34 @@ export class PlantsService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    const plantDataT = { owner: user, ...plantData };
-    const plant: Plant = this.plantRepository.create(plantDataT);
+    const plantDataT = { userId: user.id, ...plantData };
 
-    return plant.save();
+    return this.prisma.plant.create({
+      data: plantDataT,
+    });
   }
 
   async findAll(username: string): Promise<Plant[]> {
-    const user: User = await this.userRepository.findOne({
+    const user: User = await this.prisma.user.findFirst({
       where: {
         username,
-      },
-      relations: {
-        plants: true,
       },
     });
 
     if (!user) {
       throw new HttpException('User not found', HttpStatus.FOUND);
     }
-
-    return user.plants;
+    return this.prisma.plant.findMany({
+      where: {
+        user: {
+          id: user.id,
+        },
+      },
+    });
   }
 
   async findOne(id: number): Promise<Plant> {
-    const plant: Plant = await this.plantRepository.findOne({
+    const plant: Plant = await this.prisma.plant.findFirst({
       where: {
         id: id,
       },
@@ -59,18 +56,21 @@ export class PlantsService {
   }
 
   async update(id: number, updatePlantDto: UpdatePlantDto): Promise<Plant> {
-    const updatePlant: UpdateResult = await this.plantRepository.update(
-      id,
-      updatePlantDto,
-    );
-    const plant: Plant = await this.plantRepository.findOne({ where: { id } });
-    return plant;
+    const updatePlant: Plant = await this.prisma.plant.update({
+      where: {
+        id,
+      },
+      data: updatePlantDto,
+    });
+    return updatePlant;
   }
 
-  async remove(id: number): Promise<number> {
-    const removedPlant: DeleteResult = await this.plantRepository.delete({
-      id,
+  async remove(id: number): Promise<Plant> {
+    const removedPlant = await this.prisma.plant.delete({
+      where: {
+        id,
+      },
     });
-    return removedPlant.affected;
+    return removedPlant;
   }
 }

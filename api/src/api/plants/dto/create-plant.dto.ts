@@ -5,8 +5,5 @@ export interface CreatePlantDto {
 
 interface PlantData {
   name: string;
-  species: string;
-  description?: string;
-  howOften: number;
-  img?: string;
+  waterFreq: number;
 }

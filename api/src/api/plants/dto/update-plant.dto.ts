@@ -1,5 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { Plant } from '../entities/plant.entity';
-import { CreatePlantDto } from './create-plant.dto';
+import { Plant } from '@prisma/client';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UpdatePlantDto extends Partial<Plant> {}

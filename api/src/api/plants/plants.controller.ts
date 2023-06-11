@@ -6,14 +6,11 @@ import {
   Patch,
   Param,
   Delete,
-  Logger,
-  Req,
   Query,
 } from '@nestjs/common';
 import { PlantsService } from './plants.service';
 import { CreatePlantDto } from './dto/create-plant.dto';
 import { UpdatePlantDto } from './dto/update-plant.dto';
-import { Request } from 'express';
 
 @Controller('plants')
 export class PlantsController {

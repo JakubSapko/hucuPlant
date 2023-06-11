@@ -1,3 +1,4 @@
+import { PrismaService } from '@/prisma.service';
 import {
   Injectable,
   HttpException,
@@ -5,20 +6,17 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from '@/api/user/user.entity';
+import { User } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthHelper {
-  @InjectRepository(User)
-  private readonly repository: Repository<User>;
-
   private readonly jwt: JwtService;
+  private readonly prisma: PrismaService;
 
-  constructor(jwt: JwtService) {
+  constructor(prisma: PrismaService, jwt: JwtService) {
     this.jwt = jwt;
+    this.prisma = prisma;
   }
 
   // Decoding the JWT Token
@@ -28,7 +26,7 @@ export class AuthHelper {
 
   // Get User by User ID we get from decode()
   public async validateUser(decoded: any): Promise<User> {
-    return this.repository.findOne(decoded.id);
+    return this.prisma.user.findUnique(decoded.id);
   }
 
   // Generate JWT Token

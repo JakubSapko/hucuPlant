@@ -1,20 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { Request } from 'express';
 import { UpdateNameDto } from './user.dto';
-import { User } from './user.entity';
+import { PrismaService } from '@/prisma.service';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
-  @InjectRepository(User)
-  private readonly repository: Repository<User>;
-
+  constructor(private prisma: PrismaService) {}
   public async updateName(body: UpdateNameDto, req: Request): Promise<User> {
     const user: User = <User>req.user;
 
-    user.username = body.username;
-
-    return this.repository.save(user);
+    return this.prisma.user.update({ where: { id: user.id }, data: user });
   }
 }

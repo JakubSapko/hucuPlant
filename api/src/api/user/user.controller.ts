@@ -11,8 +11,8 @@ import {
 import { Request } from 'express';
 import { JwtAuthGuard } from '@/api/user/auth/auth.guard';
 import { UpdateNameDto } from './user.dto';
-import { User } from './user.entity';
 import { UserService } from './user.service';
+import { User } from '@prisma/client';
 
 @Controller('user')
 export class UserController {

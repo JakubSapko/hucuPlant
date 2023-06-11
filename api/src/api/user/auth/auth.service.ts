@@ -1,38 +1,36 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '@/api/user/user.entity';
-import { Repository } from 'typeorm';
 import { RegisterDto, LoginDto } from './auth.dto';
 import { AuthHelper } from './auth.helper';
+import { PrismaService } from '@/prisma.service';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
-  @InjectRepository(User)
-  private readonly repository: Repository<User>;
+  constructor(private prisma: PrismaService) {}
 
   @Inject(AuthHelper)
   private readonly helper: AuthHelper;
 
   public async register(body: RegisterDto): Promise<User | never> {
     const { username, email, password }: RegisterDto = body;
-    let user: User = await this.repository.findOne({ where: { email } });
+    const user: User = await this.prisma.user.findFirst({ where: { email } });
 
     if (user) {
       throw new HttpException('Conflict', HttpStatus.CONFLICT);
     }
 
-    user = new User();
-
-    user.username = username;
-    user.email = email;
-    user.password = this.helper.encodePassword(password);
-
-    return this.repository.save(user);
+    return this.prisma.user.create({
+      data: {
+        username,
+        email,
+        password: this.helper.encodePassword(password),
+      },
+    });
   }
 
   public async login(body: LoginDto): Promise<string | never> {
     const { email, password }: LoginDto = body;
-    const user: User = await this.repository.findOne({ where: { email } });
+    const user: User = await this.prisma.user.findFirst({ where: { email } });
 
     if (!user) {
       throw new HttpException('No user found', HttpStatus.NOT_FOUND);
@@ -47,13 +45,19 @@ export class AuthService {
       throw new HttpException('No user found', HttpStatus.NOT_FOUND);
     }
 
-    this.repository.update(user.id, { lastLoginAt: new Date() });
+    this.prisma.user.update({
+      where: { id: user.id },
+      data: { lastLogin: new Date() },
+    });
 
     return this.helper.generateToken(user);
   }
 
   public async refresh(user: User): Promise<string> {
-    this.repository.update(user.id, { lastLoginAt: new Date() });
+    this.prisma.user.update({
+      where: { id: user.id },
+      data: { lastLogin: new Date() },
+    });
 
     return this.helper.generateToken(user);
   }
