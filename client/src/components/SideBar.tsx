@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { RiPlantFill } from "react-icons/ri";
-import { BsFillPieChartFill } from "react-icons/bs";
+import { BsFillGearFill, BsFillPieChartFill } from "react-icons/bs";
 import { MdGroups } from "react-icons/md";
 import { GiPlantRoots } from "react-icons/gi";
 import { Button } from "antd";
@@ -29,7 +29,6 @@ const StyledButton = styled(Button)`
 
 const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
     const { logoutUser } = useAuthContext();
-    console.log("test");
     return (
         <div>
             <SideBarIcon
@@ -43,6 +42,12 @@ const SideBar: React.FC<ISideBarProps> = ({ setSite }) => {
                 text="Add a new plant"
                 setSite={setSite}
                 name="addplant"
+            />
+            <SideBarIcon
+                icon={<BsFillGearFill size="28" />}
+                text="Configure your account"
+                setSite={setSite}
+                name="configure"
             />
             {/* <SideBarIcon
         icon={<BsFillPieChartFill size="28" />}
