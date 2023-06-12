@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { CreatePlantDto } from './dto/create-plant.dto';
 import { UpdatePlantDto } from './dto/update-plant.dto';
 import { Plant, User } from '@prisma/client';
@@ -8,11 +8,11 @@ export class PlantsService {
   constructor(private prisma: PrismaService) {}
 
   async create(createPlantDto: CreatePlantDto): Promise<Plant | never> {
-    const { username, plantData }: CreatePlantDto = createPlantDto;
+    const data: CreatePlantDto = createPlantDto;
 
     const user = await this.prisma.user.findFirst({
       where: {
-        username,
+        id: data.userId,
       },
     });
 
@@ -20,10 +20,9 @@ export class PlantsService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    const plantDataT = { userId: user.id, ...plantData };
-
+    Logger.log(data);
     return this.prisma.plant.create({
-      data: plantDataT,
+      data: data,
     });
   }
 

@@ -1,12 +1,16 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, InputNumber, message } from "antd";
 import React from "react";
 import styled from "styled-components";
-import { API } from "../../services/api";
-import { PlantKeys } from "../../services/api";
+import { useAuthContext } from "../../context/AuthContext";
+import { API, PlantKeys } from "../../services/api";
 
+interface PlantFormValues {
+    plantName: string;
+    plantDescription: string;
+    waterFreq: number;
+}
 const PlantFormContainer = styled.div`
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,8 +19,8 @@ const PlantFormContainer = styled.div`
     gap: 2rem;
 `;
 
-const PlantForm = styled(Form)`
-    width: 60%;
+const PlantForm = styled(Form<PlantFormValues>)`
+    width: 65%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -45,6 +49,8 @@ const PlantForm = styled(Form)`
 // };
 
 export const NewPlantSite: React.FC = () => {
+    const { user } = useAuthContext();
+    const [api, contextHolder] = message.useMessage();
     // const [loading, setLoading] = useState(false);
     // const [imageUrl, setImageUrl] = useState<string>();
 
@@ -75,25 +81,42 @@ export const NewPlantSite: React.FC = () => {
     //         </div>
     //     </div>
     // );
-    const onFinish = (values: any) => {
-        const plant = {
-            name: values.name,
-            description: values.description,
+    const onFinish = (values: PlantFormValues) => {
+        const plantCreationPayload = {
+            name: values.plantName,
+            description: values.plantDescription,
+            waterFreq: values.waterFreq,
+            userId: user?.id,
         };
-
-        API.post(PlantKeys.BASE, plant);
+        try {
+            API.post(PlantKeys.BASE, plantCreationPayload);
+        } catch (error) {
+            console.log("dupa");
+            api.error("Sorry, something went wrong!");
+        }
     };
     return (
-        <PlantFormContainer>
-            <h1>Add a new plant to your collection!</h1>
-            <PlantForm onFinish={onFinish}>
-                <Form.Item label="Plant Name">
-                    <Input placeholder="Plant Name" />
-                </Form.Item>
-                <Form.Item label="Plant Description">
-                    <Input placeholder="Plant Description" />
-                </Form.Item>
-                {/* <Form.Item label="Plant Image">
+        <>
+            {contextHolder}
+            <PlantFormContainer>
+                <h1>Add a new plant to your collection!</h1>
+                <PlantForm onFinish={onFinish}>
+                    <Form.Item name="plantName" label="Plant Name">
+                        <Input placeholder="Plant Name" />
+                    </Form.Item>
+                    <Form.Item
+                        name="plantDescription"
+                        label="Plant Description"
+                    >
+                        <Input placeholder="Plant Description" />
+                    </Form.Item>
+                    <Form.Item name="waterFreq" label="Watering frequency">
+                        <InputNumber
+                            placeholder="How often do you water this plant? (days)"
+                            style={{ width: "100%" }}
+                        />
+                    </Form.Item>
+                    {/* <Form.Item label="Plant Image">
                     <Upload
                         name="avatar"
                         listType="picture-card"
@@ -114,12 +137,13 @@ export const NewPlantSite: React.FC = () => {
                         )}
                     </Upload>
                 </Form.Item> */}
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Add Plant
-                    </Button>
-                </Form.Item>
-            </PlantForm>
-        </PlantFormContainer>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                            Add Plant
+                        </Button>
+                    </Form.Item>
+                </PlantForm>
+            </PlantFormContainer>
+        </>
     );
 };

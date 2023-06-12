@@ -1,9 +1,6 @@
 export interface CreatePlantDto {
-  username: string;
-  plantData: PlantData;
-}
-
-interface PlantData {
+  userId: number;
   name: string;
   waterFreq: number;
+  description?: string;
 }
