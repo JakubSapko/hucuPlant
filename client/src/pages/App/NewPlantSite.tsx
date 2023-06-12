@@ -116,27 +116,6 @@ export const NewPlantSite: React.FC = () => {
                             style={{ width: "100%" }}
                         />
                     </Form.Item>
-                    {/* <Form.Item label="Plant Image">
-                    <Upload
-                        name="avatar"
-                        listType="picture-card"
-                        className="avatar-uploader"
-                        showUploadList={false}
-                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                        beforeUpload={beforeUpload}
-                        onChange={handleChange}
-                    >
-                        {imageUrl ? (
-                            <img
-                                src={imageUrl}
-                                alt="avatar"
-                                style={{ width: "100%" }}
-                            />
-                        ) : (
-                            uploadButton
-                        )}
-                    </Upload>
-                </Form.Item> */}
                     <Form.Item>
                         <Button type="primary" htmlType="submit">
                             Add Plant

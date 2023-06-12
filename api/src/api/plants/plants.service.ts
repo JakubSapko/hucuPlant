@@ -20,7 +20,6 @@ export class PlantsService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    Logger.log(data);
     return this.prisma.plant.create({
       data: data,
     });

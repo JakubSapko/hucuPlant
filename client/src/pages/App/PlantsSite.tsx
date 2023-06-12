@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { NoDataPlaceholder } from "../../components/NoDataPlaceholder";
 import PlantCard from "../../components/PlantCard";
-import { usePlantsContext } from "../../context/PlantsContext";
 import { usePlants } from "../../hooks/plants/usePlants";
 
 const Wrapper = styled.div`
@@ -27,7 +26,7 @@ export const PlantsSite: React.FC = () => {
             {data?.length ? (
                 <Wrapper>
                     {data.map((plant) => {
-                        return <PlantCard plant={plant} />;
+                        return <PlantCard key={plant.id} plant={plant} />;
                     })}
                 </Wrapper>
             ) : (
@@ -38,4 +37,3 @@ export const PlantsSite: React.FC = () => {
         </>
     );
 };
-
