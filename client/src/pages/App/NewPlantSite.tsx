@@ -1,5 +1,5 @@
 import { Button, Form, Input, InputNumber, message } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useAuthContext } from "../../context/AuthContext";
 import { API, PlantKeys } from "../../services/api";
@@ -51,6 +51,7 @@ const PlantForm = styled(Form<PlantFormValues>)`
 export const NewPlantSite: React.FC = () => {
     const { user } = useAuthContext();
     const [api, contextHolder] = message.useMessage();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     // const [loading, setLoading] = useState(false);
     // const [imageUrl, setImageUrl] = useState<string>();
 
@@ -82,6 +83,7 @@ export const NewPlantSite: React.FC = () => {
     //     </div>
     // );
     const onFinish = (values: PlantFormValues) => {
+        setIsLoading(true);
         const plantCreationPayload = {
             name: values.plantName,
             description: values.plantDescription,
@@ -90,9 +92,12 @@ export const NewPlantSite: React.FC = () => {
         };
         try {
             API.post(PlantKeys.BASE, plantCreationPayload);
+            api.success("Plant created successfully!");
         } catch (error) {
             console.log("dupa");
             api.error("Sorry, something went wrong!");
+        } finally {
+            setIsLoading(false);
         }
     };
     return (
@@ -117,7 +122,11 @@ export const NewPlantSite: React.FC = () => {
                         />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            loading={isLoading}
+                        >
                             Add Plant
                         </Button>
                     </Form.Item>

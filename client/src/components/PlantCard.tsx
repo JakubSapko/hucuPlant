@@ -27,10 +27,9 @@ const DataContainer = styled.div`
 `;
 
 const PlantCard: React.FC<ICardProps> = ({ plant }) => {
-    console.log(plant);
     return (
         <StyledCard>
-            <DeleteButton />
+            <DeleteButton id={plant.id} />
             <PhotoContainer>
                 <img
                     alt="Plant"

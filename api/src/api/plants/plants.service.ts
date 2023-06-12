@@ -63,7 +63,30 @@ export class PlantsService {
     return updatePlant;
   }
 
-  async remove(id: number): Promise<Plant> {
+  async remove(id: number, userData: { id: number }): Promise<Plant> {
+    const user: User = await this.prisma.user.findFirst({
+      where: {
+        id: userData.id,
+      },
+    });
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    const plant: Plant = await this.prisma.plant.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!plant) {
+      throw new HttpException('Plant not found', HttpStatus.NOT_FOUND);
+    }
+
+    if (plant.userId !== userData.id) {
+      throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+    }
     const removedPlant = await this.prisma.plant.delete({
       where: {
         id,

@@ -40,7 +40,7 @@ export class PlantsController {
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return this.plantsService.remove(+id);
+  async remove(@Param('id') id: string, @Body() userData: { id: number }) {
+    return this.plantsService.remove(+id, userData);
   }
 }
