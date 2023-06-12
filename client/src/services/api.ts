@@ -9,6 +9,10 @@ export enum AuthKeys {
     LOGIN = "auth/login",
     REFRESH_TOKEN = "auth/refresh/",
 }
+
+export enum UserKeys {
+    BASE = "user/",
+}
 class ApiCaller {
     private apiPath: string;
 
