@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtAuthGuard } from '@/api/user/auth/auth.guard';
-import { UpdateNameDto } from './user.dto';
+import { UpdateUserDto } from './user.dto';
 import { UserService } from './user.service';
 import { User } from '@prisma/client';
 
@@ -19,13 +19,13 @@ export class UserController {
   @Inject(UserService)
   private readonly service: UserService;
 
-  @Put('name')
-  @UseGuards(JwtAuthGuard)
+  @Put('')
+  // @UseGuards(JwtAuthGuard)
   @UseInterceptors(ClassSerializerInterceptor)
-  private updateName(
-    @Body() body: UpdateNameDto,
+  private update(
+    @Body() body: UpdateUserDto,
     @Req() req: Request,
   ): Promise<User> {
-    return this.service.updateName(body, req);
+    return this.service.update(body, req);
   }
 }

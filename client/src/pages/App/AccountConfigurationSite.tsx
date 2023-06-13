@@ -27,6 +27,7 @@ const ChangePasswordForm = styled(Form<ChangePasswordFormValues>)`
 `;
 
 export const AccountConfigurationSite: React.FC = () => {
+    const { user } = useAuthContext();
     const [api, contextHolder] = message.useMessage();
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -37,11 +38,12 @@ export const AccountConfigurationSite: React.FC = () => {
         }
         setIsLoading(true);
         const changePasswordPayload = {
+            id: user?.id,
             password: values.oldPassword,
             newPassword: values.newPassword,
         };
         try {
-            API.post(UserKeys.BASE, changePasswordPayload);
+            API.update(UserKeys.BASE, changePasswordPayload);
             api.success("Password changed successfully");
         } catch (error) {
             api.error("Sorry, something went wrong!");

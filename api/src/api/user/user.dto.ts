@@ -1,6 +1,9 @@
 import { IsString } from 'class-validator';
 
-export class UpdateNameDto {
-  @IsString()
-  public readonly username: string;
+export class UpdateUserDto {
+  public readonly username?: string;
+  public readonly email?: string;
+  public readonly password?: string;
+  public readonly newPassword?: string;
+  public readonly id: number;
 }
