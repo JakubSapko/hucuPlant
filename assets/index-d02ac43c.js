@@ -273,7 +273,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 `,bz=je(Es.Sider)`
     background-color: #52822e;
     color: #ed7d3a;
-`,Sz=()=>{const[e,t]=c.useState("plants"),n={dashboard:G.jsx(X9,{}),plants:G.jsx(hz,{}),groups:G.jsx(J9,{}),addplant:G.jsx(mz,{}),configure:G.jsx(Cz,{})};return G.jsxs(Es,{children:[G.jsx(bz,{children:G.jsx(Y9,{setSite:t})}),G.jsx(wz,{children:n[e]})]})},xz=({outlet:e})=>{const{isAuthenticated:t}=ni();return t?G.jsx(G.Fragment,{children:e}):G.jsx(B9,{to:{pathname:"/"}})},Ez=je.div`
+`,Sz=()=>{const[e,t]=c.useState("plants"),n={dashboard:G.jsx(X9,{}),plants:G.jsx(hz,{}),groups:G.jsx(J9,{}),addplant:G.jsx(mz,{}),configure:G.jsx(Cz,{})};return G.jsxs(Es,{children:[G.jsx(bz,{children:G.jsx(Y9,{setSite:t})}),G.jsx(wz,{children:n[e]})]})},xz=({outlet:e})=>{const{isAuthenticated:t}=ni();return t?G.jsx(G.Fragment,{children:e}):G.jsx(B9,{to:{pathname:"/"}})},Ez="/assets/bonsai-5ecad9a1.jpeg",Pz=je.div`
     min-height: 100%;
     width: 100%;
     display: grid;
@@ -281,23 +281,23 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     grid-template-rows: 33% 33%;
     font-family: "Poppins", sans-serif;
     max-height: fit-content;
-`,Pz=je.img`
+`,Nz=je.img`
     grid-row: 1 / span 2;
     grid-column: 2;
     size: auto;
-`,Nz=je.div`
+`,Oz=je.div`
     grid-column: 3;
     grid-row: 1;
     font-size: 2rem;
     padding: 0.5rem;
     margin-top: 0.5rem;
-`,Oz=je.div`
+`,kz=je.div`
     grid-column: 1;
     grid-row: 2;
     font-size: 2rem;
     padding: 1rem;
     height: min-content;
-`,kz=je.div`
+`,Rz=je.div`
     animation-name: slideinLeft;
     animation-duration: 2.5s;
 
@@ -310,7 +310,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             transform: translateX(0%);
         }
     }
-`,Rz=je.div`
+`,_z=je.div`
     animation-name: slideinRight;
     animation-duration: 2.5s;
 
@@ -326,26 +326,26 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 `,Yu=je.p`
     color: #659e38;
     display: inline;
-`,J1=()=>G.jsxs(Ez,{children:[G.jsx(Pz,{src:"https://res.cloudinary.com/dvtgymik1/image/upload/v1686941959/bonsai_gvqjmo.jpg"}),G.jsx(Nz,{children:G.jsxs(Rz,{children:["Take your plant care to the next level with"," ",G.jsx(Yu,{children:"hucuPlant!"})]})}),G.jsx(Oz,{children:G.jsxs(kz,{children:["With our tool you'll never forget to water your plants properly and managing your little forest will become a"," ",G.jsx(Yu,{children:" pure pleasure "})]})})]}),_z=e=>{const t=Ls(),{setAuthTokens:n,setUser:r}=ni();return km({mutationFn:a=>Ga.post(Fm.LOGIN,a),onSuccess:a=>{const o=a.data;n(o);const s=a2(o);r(s),localStorage.setItem("authTokens",JSON.stringify(o)),t("/home",{replace:!0})},onError:()=>{e.error("You provided wrong credentials!")}})},G2=()=>{const[e,t]=$i.useMessage(),[n]=ht.useForm(),r=_z(e),{user:i}=ni(),a=Ls();i&&a("/home");const o=async s=>{try{const l=await s.validateFields();await r.mutate(l)}catch(l){e.error(`An error ${l} occured.`)}};return G.jsxs("div",{children:[t,G.jsxs(ht,{name:"loginForm",initialValues:{remember:!0},autoComplete:"off",form:n,children:[G.jsx(ht.Item,{label:"Email",name:"email",rules:[{required:!0,message:"Please input your email!"}],children:G.jsx(Kn,{})}),G.jsx(ht.Item,{label:"Password",name:"password",rules:[{required:!0,message:"Please input your password!"}],children:G.jsx(Kn.Password,{})}),G.jsx(ht.Item,{children:G.jsx(qn,{type:"primary",htmlType:"submit",style:{backgroundColor:"#659e38",border:"none"},loading:r.isLoading,onClick:()=>o(n),children:"Submit"})})]})]})},Q2=je.div`
+`,J1=()=>G.jsxs(Pz,{children:[G.jsx(Nz,{src:Ez}),G.jsx(Oz,{children:G.jsxs(_z,{children:["Take your plant care to the next level with"," ",G.jsx(Yu,{children:"hucuPlant!"})]})}),G.jsx(kz,{children:G.jsxs(Rz,{children:["With our tool you'll never forget to water your plants properly and managing your little forest will become a"," ",G.jsx(Yu,{children:" pure pleasure "})]})})]}),Tz=e=>{const t=Ls(),{setAuthTokens:n,setUser:r}=ni();return km({mutationFn:a=>Ga.post(Fm.LOGIN,a),onSuccess:a=>{const o=a.data;n(o);const s=a2(o);r(s),localStorage.setItem("authTokens",JSON.stringify(o)),t("/home",{replace:!0})},onError:()=>{e.error("You provided wrong credentials!")}})},G2=()=>{const[e,t]=$i.useMessage(),[n]=ht.useForm(),r=Tz(e),{user:i}=ni(),a=Ls();i&&a("/home");const o=async s=>{try{const l=await s.validateFields();await r.mutate(l)}catch(l){e.error(`An error ${l} occured.`)}};return G.jsxs("div",{children:[t,G.jsxs(ht,{name:"loginForm",initialValues:{remember:!0},autoComplete:"off",form:n,children:[G.jsx(ht.Item,{label:"Email",name:"email",rules:[{required:!0,message:"Please input your email!"}],children:G.jsx(Kn,{})}),G.jsx(ht.Item,{label:"Password",name:"password",rules:[{required:!0,message:"Please input your password!"}],children:G.jsx(Kn.Password,{})}),G.jsx(ht.Item,{children:G.jsx(qn,{type:"primary",htmlType:"submit",style:{backgroundColor:"#659e38",border:"none"},loading:r.isLoading,onClick:()=>o(n),children:"Submit"})})]})]})},Q2=je.div`
   font-family: "Poppins", sans-serif;
   font-size: 2rem;
   margin-bottom: 0.5rem;
-`,Tz=je.div`
+`,Mz=je.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 70%;
-`,Mz=()=>G.jsxs(Tz,{children:[G.jsxs(Q2,{children:[" ","A brief introduction on ",G.jsx(Yu,{children:"why"})," "]}),G.jsx("p",{children:"  At first, this project was ought to be a playground for me to sharpen my Django (and DjangoRestFramework) skills, as I had an intention of once becoming a fullstack developer with Django on backend and React on frontend. I still have this desire, however, during both the development process of this app, as well as during some of the recruitment processes that I was participating in at the time I saw that using Python at the backend comes with a cost. And if you are not well-experienced programmer with a deep knowgledge of every possible backend field, just like me, this cost can be huge. The main concerns that I found were connected with strong typing, programmer-language relations, Runtime errors and the pace at which your code starts to become obsolete and dependent on maintaining."}),G.jsxs("p",{children:["  Now, I have this advantage over others that I live in one flat with a best friend of mine who is a really good programmer - a person acquainted with a lots of fields in Computer Science and life in general, an authority one could say. I shared my concerns with him and he said that, well, if I already know TypeScript (and JavaScript), coming from frontend, then why wouldn't I try the Node.JS and some web frameworks. I decided to give it a shot and found that this whole ecosystem is something that I really enjoy being put into. Therefore I decided to scrap the Django backend (it actually still exists in this",G.jsx("a",{href:"https://github.com/JakubSapko/hucuPlant",children:" project's repo"}),` as an archive of the progress) and start up with a new stack. I decided on Node.JS, ExpressJS, React (all using TypeScript) and PostgreSQL as a database. Now, the development with that stack has become a pure pleasure for me. It really showed me the way in which I want to go as an aspiring fullstack developer. Everything about those tools, be it either language or frameworks made me want dig deeper into them, rather than going broader. And as I think that broadening one's knowledge is a good thing, I also think that going deep into something is what makes a developer "good". Now I also have this purpose.`]}),G.jsx("p",{children:`  The last, but no least, reason is that we have quite a lot of plants in our flat ("hucu" flat :)) and some of them occasionally get forgotten about. I strongly believe that tools made by humans should be as useful as possible, so when learning something new I like to have this feeling of purpose. This really makes a whole process easier - knowing that you'll both learn some new things and provide a solution to a problem.`}),G.jsx("p",{children:"  So yeah, enjoy and hopefully it will be useful for you as well!"})]}),Az=e=>km({mutationFn:n=>Ga.post(Fm.REGISTER,n),onSuccess:()=>{e.success("Your profile was created! Proceed to the login screen.")},onError:()=>{e.error("Something went wrong!")}}),Iz={labelCol:{span:8},wrapperCol:{span:8}},$z=()=>{const[e]=ht.useForm(),[t,n]=$i.useMessage(),r=Az(t),i=a=>{r.mutate(a)};return G.jsxs("div",{children:[n,G.jsxs(Q2,{children:["Create your own ",G.jsx(Yu,{children:"plant kingdom"}),", right now!"]}),G.jsxs(ht,{...Iz,form:e,name:"signup-form",onFinish:i,children:[G.jsx(ht.Item,{name:"email",label:"Email address",rules:[{required:!0}],children:G.jsx(Kn,{type:"email"})}),G.jsx(ht.Item,{name:"username",label:"Username",rules:[{required:!0}],children:G.jsx(Kn,{type:"text"})}),G.jsx(ht.Item,{name:"password",label:"Password",rules:[{required:!0}],children:G.jsx(Kn,{type:"password"})}),G.jsx(qn,{htmlType:"submit",type:"primary",style:{backgroundColor:"#659e38",border:"none"},loading:r.isLoading,children:"Submit"})]})]})},{Header:Fz,Content:Lz}=Es,Dz=je(Fz)`
+`,Az=()=>G.jsxs(Mz,{children:[G.jsxs(Q2,{children:[" ","A brief introduction on ",G.jsx(Yu,{children:"why"})," "]}),G.jsx("p",{children:"  At first, this project was ought to be a playground for me to sharpen my Django (and DjangoRestFramework) skills, as I had an intention of once becoming a fullstack developer with Django on backend and React on frontend. I still have this desire, however, during both the development process of this app, as well as during some of the recruitment processes that I was participating in at the time I saw that using Python at the backend comes with a cost. And if you are not well-experienced programmer with a deep knowgledge of every possible backend field, just like me, this cost can be huge. The main concerns that I found were connected with strong typing, programmer-language relations, Runtime errors and the pace at which your code starts to become obsolete and dependent on maintaining."}),G.jsxs("p",{children:["  Now, I have this advantage over others that I live in one flat with a best friend of mine who is a really good programmer - a person acquainted with a lots of fields in Computer Science and life in general, an authority one could say. I shared my concerns with him and he said that, well, if I already know TypeScript (and JavaScript), coming from frontend, then why wouldn't I try the Node.JS and some web frameworks. I decided to give it a shot and found that this whole ecosystem is something that I really enjoy being put into. Therefore I decided to scrap the Django backend (it actually still exists in this",G.jsx("a",{href:"https://github.com/JakubSapko/hucuPlant",children:" project's repo"}),` as an archive of the progress) and start up with a new stack. I decided on Node.JS, ExpressJS, React (all using TypeScript) and PostgreSQL as a database. Now, the development with that stack has become a pure pleasure for me. It really showed me the way in which I want to go as an aspiring fullstack developer. Everything about those tools, be it either language or frameworks made me want dig deeper into them, rather than going broader. And as I think that broadening one's knowledge is a good thing, I also think that going deep into something is what makes a developer "good". Now I also have this purpose.`]}),G.jsx("p",{children:`  The last, but no least, reason is that we have quite a lot of plants in our flat ("hucu" flat :)) and some of them occasionally get forgotten about. I strongly believe that tools made by humans should be as useful as possible, so when learning something new I like to have this feeling of purpose. This really makes a whole process easier - knowing that you'll both learn some new things and provide a solution to a problem.`}),G.jsx("p",{children:"  So yeah, enjoy and hopefully it will be useful for you as well!"})]}),Iz=e=>km({mutationFn:n=>Ga.post(Fm.REGISTER,n),onSuccess:()=>{e.success("Your profile was created! Proceed to the login screen.")},onError:()=>{e.error("Something went wrong!")}}),$z={labelCol:{span:8},wrapperCol:{span:8}},Fz=()=>{const[e]=ht.useForm(),[t,n]=$i.useMessage(),r=Iz(t),i=a=>{r.mutate(a)};return G.jsxs("div",{children:[n,G.jsxs(Q2,{children:["Create your own ",G.jsx(Yu,{children:"plant kingdom"}),", right now!"]}),G.jsxs(ht,{...$z,form:e,name:"signup-form",onFinish:i,children:[G.jsx(ht.Item,{name:"email",label:"Email address",rules:[{required:!0}],children:G.jsx(Kn,{type:"email"})}),G.jsx(ht.Item,{name:"username",label:"Username",rules:[{required:!0}],children:G.jsx(Kn,{type:"text"})}),G.jsx(ht.Item,{name:"password",label:"Password",rules:[{required:!0}],children:G.jsx(Kn,{type:"password"})}),G.jsx(qn,{htmlType:"submit",type:"primary",style:{backgroundColor:"#659e38",border:"none"},loading:r.isLoading,children:"Submit"})]})]})},{Header:Lz,Content:Dz}=Es,jz=je(Lz)`
     background-color: white;
-`,jz=je.div`
+`,zz=je.div`
     color: #659e38;
     font-family: "Poppins", sans-serif;
     margin-top: 0.5rem;
     font-size: 2.3rem;
     width: fit-content;
     float: left;
-`,zz=je(Z5)`
+`,Vz=je(Z5)`
     margin-top: 0.5rem;
     border-bottom-style: none;
     && .ant-menu-item-selected::after {
@@ -355,4 +355,4 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     && .ant-menu-item:hover::after {
         border-bottom: 2px solid #659e38 !important;
     }
-`,Vz=()=>{const[e,t]=c.useState("home");ni(),Ls();const n=[{key:1,label:"Home",style:{color:"black",transition:"none",border:"none"},onClick:()=>{t("home")}},{key:2,label:"Overview",style:{color:"black",transition:"none",border:"none"},onClick:()=>{t("overview")}},{key:3,label:"Sign Up",style:{color:"black",transition:"none",border:"none"},onClick:()=>{t("signup")}},{key:4,label:"Log In",style:{color:"black",transition:"none",border:"none"},onClick:()=>t("login")}],r=()=>{switch(e){case"home":return G.jsx(J1,{});case"overview":return G.jsx(Mz,{});case"signup":return G.jsx($z,{});case"login":return G.jsx(G2,{});default:return G.jsx(J1,{})}};return G.jsxs(Es,{style:{minHeight:"100%"},children:[G.jsxs(Dz,{children:[G.jsx(jz,{children:"hucuPlant"}),G.jsx(zz,{mode:"horizontal",items:n,style:{float:"right"}})]}),G.jsx(Lz,{style:{backgroundColor:"white",minHeight:"100%",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"},children:r()})]})},Uz=new pj;function Hz(){const[e,t]=$i.useMessage();return G.jsx(kj,{client:Uz,children:G.jsxs(q9,{children:[t,G.jsx(G9,{children:G.jsxs(K9,{children:[G.jsx(Yl,{path:"/home",element:G.jsx(xz,{outlet:G.jsx(Sz,{})})}),G.jsx(Yl,{element:G.jsx(G2,{}),path:"/login"}),G.jsx(Yl,{element:G.jsx(Vz,{}),path:"/"})]})})]})})}const Bz=Nd.createRoot(document.getElementById("root"));Bz.render(G.jsx(pe.StrictMode,{children:G.jsx(Hz,{})}));
+`,Uz=()=>{const[e,t]=c.useState("home");ni(),Ls();const n=[{key:1,label:"Home",style:{color:"black",transition:"none",border:"none"},onClick:()=>{t("home")}},{key:2,label:"Overview",style:{color:"black",transition:"none",border:"none"},onClick:()=>{t("overview")}},{key:3,label:"Sign Up",style:{color:"black",transition:"none",border:"none"},onClick:()=>{t("signup")}},{key:4,label:"Log In",style:{color:"black",transition:"none",border:"none"},onClick:()=>t("login")}],r=()=>{switch(e){case"home":return G.jsx(J1,{});case"overview":return G.jsx(Az,{});case"signup":return G.jsx(Fz,{});case"login":return G.jsx(G2,{});default:return G.jsx(J1,{})}};return G.jsxs(Es,{style:{minHeight:"100%"},children:[G.jsxs(jz,{children:[G.jsx(zz,{children:"hucuPlant"}),G.jsx(Vz,{mode:"horizontal",items:n,style:{float:"right"}})]}),G.jsx(Dz,{style:{backgroundColor:"white",minHeight:"100%",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"},children:r()})]})},Hz=new pj;function Bz(){const[e,t]=$i.useMessage();return G.jsx(kj,{client:Hz,children:G.jsxs(q9,{children:[t,G.jsx(G9,{children:G.jsxs(K9,{children:[G.jsx(Yl,{path:"/home",element:G.jsx(xz,{outlet:G.jsx(Sz,{})})}),G.jsx(Yl,{element:G.jsx(G2,{}),path:"/login"}),G.jsx(Yl,{element:G.jsx(Uz,{}),path:"/"})]})})]})})}const Wz=Nd.createRoot(document.getElementById("root"));Wz.render(G.jsx(pe.StrictMode,{children:G.jsx(Bz,{})}));
