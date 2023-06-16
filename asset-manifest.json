@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.fcec72ff.css",
-    "main.js": "/static/js/main.8a927205.js",
-    "index.html": "/index.html",
-    "main.fcec72ff.css.map": "/static/css/main.fcec72ff.css.map",
-    "main.8a927205.js.map": "/static/js/main.8a927205.js.map"
+    "main.css": "/hucuPlant/static/css/main.fcec72ff.css",
+    "main.js": "/hucuPlant/static/js/main.70d74143.js",
+    "index.html": "/hucuPlant/index.html",
+    "main.fcec72ff.css.map": "/hucuPlant/static/css/main.fcec72ff.css.map",
+    "main.70d74143.js.map": "/hucuPlant/static/js/main.70d74143.js.map"
   },
   "entrypoints": [
     "static/css/main.fcec72ff.css",
-    "static/js/main.8a927205.js"
+    "static/js/main.70d74143.js"
   ]
 }
