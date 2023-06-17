@@ -43,7 +43,6 @@ export const NewPlantSite: React.FC = () => {
             API.post(PlantKeys.BASE, plantCreationPayload);
             api.success("Plant created successfully!");
         } catch (error) {
-            console.log("dupa");
             api.error("Sorry, something went wrong!");
         } finally {
             setIsLoading(false);

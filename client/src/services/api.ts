@@ -17,8 +17,8 @@ class ApiCaller {
     private apiPath: string;
 
     constructor(urlSchema: string) {
-        const apiPort = process.env.REACT_APP_BACKEND_PORT
-            ? process.env.REACT_APP_BACKEND_PORT
+        const apiPort = import.meta.env.VITE_APP_BACKEND_PORT
+            ? import.meta.env.VITE_APP_BACKEND_PORT
             : 3000;
 
         this.apiPath = `${urlSchema}:${apiPort}`;
@@ -58,7 +58,7 @@ class ApiCaller {
 }
 
 export const API = new ApiCaller(
-    process.env.REACT_APP_HOSTNAME
-        ? process.env.REACT_APP_HOSTNAME
+    import.meta.env.VITE_APP_HOSTNAME
+        ? import.meta.env.VITE_APP_HOSTNAME
         : "http://localhost"
 );

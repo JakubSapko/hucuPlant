@@ -38,21 +38,20 @@ export const PlantsContextProvider = ({
     }, []);
 
     const getPlants = async () => {
-        let accessToken = authTokens;
-        const response = await fetch("http://localhost:8000/api/data/", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + String(accessToken),
-            },
-        });
-        let data = await response.json();
-
-        if (response.status === 200) {
-            setPlants(data);
-        } else if (response.statusText === "Unauthorized") {
-            logoutUser();
-        }
+        // let accessToken = authTokens;
+        // const response = await fetch("http://localhost:8000/api/data/", {
+        //     method: "GET",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         Authorization: "Bearer " + String(accessToken),
+        //     },
+        // });
+        // let data = await response.json();
+        // if (response.status === 200) {
+        //     setPlants(data);
+        // } else if (response.statusText === "Unauthorized") {
+        //     logoutUser();
+        // }
     };
 
     const plantsContextValue: IPlantsContext = {
