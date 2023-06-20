@@ -3,7 +3,7 @@ services:
   nest-api:
     container_name: nest-api
     build:
-      context: .
+      context: ./api/
       dockerfile: Dockerfile
     ports:
       - 3000:3000
@@ -11,6 +11,11 @@ services:
       - postgres
     env_file:
       - .env
+    volumes:
+      - ./src:/var/app/src
+      # - ./dist:/var/app/dist
+      - ./tsconfig.json:/var/app/tsconfig.json
+      - ./tsconfig.build.json:/var/app/tsconfig.build.json
 
   postgres:
     image: postgres:14.2
@@ -26,3 +31,4 @@ services:
 volumes:
   postgres:
     name: hucuplant
+

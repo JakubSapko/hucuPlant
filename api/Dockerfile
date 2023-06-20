@@ -1,6 +1,6 @@
-FROM node:18.1.0-alpine3.14 
+FROM node:16.15.1
 
-WORKDIR /app
+WORKDIR /var/app
 
 COPY package*.json ./
 COPY prisma ./prisma/
